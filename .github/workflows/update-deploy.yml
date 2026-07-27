@@ -6,6 +6,7 @@ on:
     - cron: "17 4 * * 0"
   push:
     # main/master へのプッシュで発火（アプリ/クローラ/ワークフロー本体の変更時）
+    # → クロールはせずコミット済みデータを即デプロイ（初回ホスティング確認やUI変更反映を高速化）
     branches: [main, master]
     paths:
       - 'web/**'
@@ -18,8 +19,9 @@ on:
         type: boolean
         default: false
 
+# push(デプロイのみ)は即終了。schedule/dispatch(クロール)は git commit-back するため contents:write
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -39,11 +41,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      # ---- クロール系（schedule / 手動実行のみ。pushではスキップ） ----
       - name: Install Python deps
+        if: github.event_name != 'push'
         run: pip install -r crawl/requirements.txt
 
-      # クロールキャッシュを復元（詳細・座標の再利用で高速化）
       - name: Restore crawl cache
+        if: github.event_name != 'push'
         uses: actions/cache@v4
         with:
           path: |
@@ -54,12 +58,13 @@ jobs:
             komeri-crawl-cache-
 
       - name: Full refresh (clear all caches)
-        if: ${{ github.event.inputs.full_refresh == 'true' }}
+        if: ${{ github.event_name != 'push' && github.event.inputs.full_refresh == 'true' }}
         run: |
           rm -f crawl/crawl_cache.json crawl/fill_cache.json
           echo "::notice::Full refresh: all caches cleared"
 
       - name: Crawl all stores
+        if: github.event_name != 'push'
         env:
           FRESH_DISCOVERY: "1"
         run: |
@@ -68,6 +73,7 @@ jobs:
           python3 crawl/fill_coords.py
 
       - name: Validate data (guard against blocked/partial crawl)
+        if: github.event_name != 'push'
         run: |
           python3 - <<'PY'
           import json, sys
@@ -84,6 +90,22 @@ jobs:
           print("::notice::Data validation passed")
           PY
 
+      - name: Commit refreshed data back to repo
+        if: github.event_name != 'push'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/data/all_stores.json
+          if git diff --cached --quiet; then
+            echo "no data changes to commit"
+          else
+            git commit -m "chore: refresh store data (automated crawl)"
+            git push
+            echo "::notice::Committed refreshed store data"
+          fi
+
+      # ---- デプロイ系（常に実行。push時はコミット済みデータを使う） ----
       - name: Show summary
         run: |
           python3 - <<'PY'
@@ -110,6 +132,3 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-
-      # 次回実行用にキャッシュを保存（actions/cache は miss 時のみ保存するため、
-      # 常に最新化するために run_id キーで保存させる → restore-keys で次回復元される）

@@ -29,6 +29,15 @@ const clusters = L.markerClusterGroup({
 });
 map.addLayer(clusters);
 
+// モバイルではCSSの dvh 反映やアドレスバーの表示/非表示でコンテナサイズが
+// 初期化直後と食い違い、タイルが空白のまま描画されないことがあるため、
+// リサイズ・向き変更・初回ロード完了時に地図の内部サイズ計算をやり直す。
+function refreshMapSize() { map.invalidateSize(); }
+window.addEventListener("resize", refreshMapSize);
+window.addEventListener("orientationchange", () => setTimeout(refreshMapSize, 200));
+window.addEventListener("load", () => setTimeout(refreshMapSize, 100));
+setTimeout(refreshMapSize, 300);
+
 const listEl = document.getElementById("list");
 const countEl = document.getElementById("count");
 const searchEl = document.getElementById("search");
@@ -197,8 +206,10 @@ function setActive(id, fly) {
   const li = listEl.querySelector(`li[data-id="${id}"]`);
   if (li) li.scrollIntoView({ block: "nearest", behavior: "smooth" });
   const m = markersById.get(id);
-  if (m && fly) clusters.zoomToShowLayer(m, () => m.openPopup());
-  else if (m) m.openPopup();
+  if (m && fly) {
+    if (window.matchMedia("(max-width: 720px)").matches) closeSidebarDrawer();
+    clusters.zoomToShowLayer(m, () => m.openPopup());
+  } else if (m) m.openPopup();
 }
 
 fetch(DATA_URL)
@@ -330,6 +341,25 @@ function switchView(view) {
 }
 document.querySelectorAll(".tab").forEach(b =>
   b.addEventListener("click", () => switchView(b.dataset.view)));
+
+/* mobile sidebar drawer (list <-> full-screen map) */
+const sidebarEl = document.getElementById("sidebar");
+const sidebarOpenBtn = document.getElementById("sidebarOpen");
+const sidebarCloseBtn = document.getElementById("sidebarClose");
+
+function closeSidebarDrawer() {
+  sidebarEl.classList.add("closed");
+  setTimeout(refreshMapSize, 260); // wait for the CSS transform transition to finish
+}
+function openSidebarDrawer() {
+  sidebarEl.classList.remove("closed");
+}
+sidebarOpenBtn && sidebarOpenBtn.addEventListener("click", openSidebarDrawer);
+sidebarCloseBtn && sidebarCloseBtn.addEventListener("click", closeSidebarDrawer);
+// start closed (map-first) on narrow screens
+if (window.matchMedia("(max-width: 720px)").matches) {
+  sidebarEl.classList.add("closed");
+}
 
 document.querySelectorAll(".sortbtn").forEach(b =>
   b.addEventListener("click", () => {

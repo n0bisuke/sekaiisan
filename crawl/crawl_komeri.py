@@ -72,12 +72,16 @@ def get(url, want="body"):
 
 
 def load_cache():
+    base = {"resultlist_links": {}, "store_ids_by_rl": {}, "store_detail": {}, "coords": {}}
     if os.path.exists(CACHE):
         try:
-            return json.load(open(CACHE, encoding="utf-8"))
+            data = json.load(open(CACHE, encoding="utf-8"))
+            for k, v in base.items():
+                data.setdefault(k, v)
+            return data
         except Exception:
             pass
-    return {"resultlist_links": {}, "store_ids_by_rl": {}, "store_detail": {}, "coords": {}}
+    return base
 
 
 def save_cache(c):
@@ -219,9 +223,10 @@ def main():
     if os.environ.get("FRESH_DISCOVERY"):
         # re-discover area groups / store ids (catches new stores) but reuse
         # cached store_detail and coords for known ids (much faster, gentler).
+        # NOTE: reset to {} (not pop) so the keys still exist for direct lookups.
         n0 = sum(len(v) for v in cache.get("resultlist_links", {}).values())
-        cache.pop("resultlist_links", None)
-        cache.pop("store_ids_by_rl", None)
+        cache["resultlist_links"] = {}
+        cache["store_ids_by_rl"] = {}
         save_cache(cache)
         print(f"FRESH_DISCOVERY: cleared discovery caches ({n0} area links)", flush=True)
     # Stage 1: ResultList links per pref (parallel across prefs)

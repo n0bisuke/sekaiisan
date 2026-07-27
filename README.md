@@ -43,12 +43,14 @@ python3 -m http.server 8000
 4. Google Maps 短縮リンクを展開し `!3d{lat}!4d{lon}` から正確な緯度経度を取得（Nominatim 不使用）
 
 ```bash
+pip install -r crawl/requirements.txt   # httpx （CIでは自動インストール）
 python3 crawl/crawl_komeri.py    # web/data/all_stores.json を生成。キャッシュで再開可能
 python3 crawl/fix_names.py       # エラー名復元
 python3 crawl/fill_coords.py     # 座標補完
 ```
 
 スクリプトは配置場所（`crawl/`）基準でパスを解決するため、リポジトリルートから実行できます。
+HTTP通信は `crawl/httputil.py`（httpx + スレッド毎のコネクションプール/keep-alive）で共通化。curlサブプロセスを廃止し、20並列で約75リクエスト/秒（全クロール約2〜5分、従来のcurl版約25分から5〜10倍高速）。
 
 ## 機能
 

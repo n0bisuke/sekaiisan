@@ -7,38 +7,33 @@ Uses progressive address simplification + 429 backoff.
 import json
 import os
 import re
+import sys
 import time
-import subprocess
+import urllib.parse
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import httputil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 STORES = os.path.join(REPO, "web", "data", "all_stores.json")
 CACHE = os.path.join(HERE, "fill_cache.json")
-UA = "KomeriStoreMap/1.0"
 
 
 def nominatim(q):
-    cmd = ["curl", "-s", "--max-time", "30", "-w", "\n%{http_code}", "-A", UA,
-           "-H", "Accept-Language: ja", "-G", "https://nominatim.openstreetmap.org/search",
-           "--data-urlencode", f"q={q}", "--data", "format=json",
-           "--data", "limit=1", "--data", "countrycodes=jp"]
-    for attempt in range(5):
-        out = subprocess.run(cmd, capture_output=True).stdout.decode("utf-8", "replace")
-        body, _, code = out.rpartition("\n")
-        try:
-            c = int(code.strip())
-        except ValueError:
-            c = 0
-        if c in (429, 403):
-            time.sleep(30 * (attempt + 1)); continue
-        try:
-            data = json.loads(body)
-        except json.JSONDecodeError:
-            return None
-        if data:
-            d = data[0]
-            return float(d["lat"]), float(d["lon"])
+    url = ("https://nominatim.openstreetmap.org/search?" +
+           urllib.parse.urlencode({"q": q, "format": "json", "limit": 1, "countrycodes": "jp"}))
+    body = httputil.get(url, want="body", ua=httputil.NOMINATIM_UA,
+                        retries=5, backoff=30.0)
+    if not body:
         return None
+    try:
+        data = json.loads(body)
+    except json.JSONDecodeError:
+        return None
+    if data:
+        d = data[0]
+        return float(d["lat"]), float(d["lon"])
     return None
 
 

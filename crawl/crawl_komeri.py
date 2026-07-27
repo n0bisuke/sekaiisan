@@ -13,20 +13,23 @@ Pipeline:
 import json
 import os
 import re
-import subprocess
+import sys
 import threading
 import time
 import urllib.parse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import httputil
+from httputil import get as http_get
+
 BASE = "https://www.komeri.com"
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 WEB_DATA = os.path.join(REPO, "web", "data")
 OUT = os.path.join(WEB_DATA, "all_stores.json")
 CACHE = os.path.join(HERE, "crawl_cache.json")
-WORKERS = 6
+WORKERS = 20
 
 PREFS = [
     "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
@@ -43,32 +46,8 @@ _lock = threading.Lock()
 
 
 def get(url, want="body"):
-    if want == "redirect":
-        cmd = ["curl", "-s", "--max-time", "25", "-A", UA,
-               "-o", "/dev/null", "-w", "%{redirect_url}", url]
-    else:
-        cmd = ["curl", "-s", "-L", "--max-time", "25", "--max-redirs", "5",
-               "-A", UA, "-w", "\n%{http_code}", url]
-    for attempt in range(3):
-        r = subprocess.run(cmd, capture_output=True)
-        out = r.stdout.decode("utf-8", "replace")
-        if want == "redirect":
-            return out.strip()
-        body, _, code = out.rpartition("\n")
-        try:
-            c = int(code.strip())
-        except ValueError:
-            c = 0
-        if c == 200 and body:
-            return body
-        if c in (429, 503):
-            time.sleep(3 * (attempt + 1))
-            continue
-        if c == 0:
-            time.sleep(1.5)
-            continue
-        return None
-    return None
+    """Thin wrapper over httputil.get (keep-alive, no curl subprocess)."""
+    return http_get(url, want=want, ua=httputil.BROWSER_UA)
 
 
 def load_cache():
@@ -94,11 +73,14 @@ def collect_resultlist_links(pref, cache):
     links = []
     seen = set()
     p = 1
+    trunc_retries = 0
     while True:
         url = (f"{BASE}/shop/storeSearch/CriteriaResult.aspx?"
                f"search={urllib.parse.quote(pref)}&cmdSearch=0&p={p}&ps=50")
         html = get(url)
         if not html:
+            if trunc_retries < 2:
+                time.sleep(0.5); trunc_retries += 1; continue
             break
         found = re.findall(r'href="(/shop/storeSearch/ResultList\.aspx\?[^"]+)"', html)
         new = 0
@@ -113,6 +95,12 @@ def collect_resultlist_links(pref, cache):
                 new += 1
         pages = [int(x) for x in re.findall(r"criteriaresult\.aspx\?p=(\d+)&", html)]
         maxp = max(pages) if pages else p
+        # page 1 with no results and no pagination => likely truncated; retry (capped)
+        if new == 0 and not pages and p == 1:
+            if trunc_retries < 2:
+                time.sleep(0.5); trunc_retries += 1; continue
+            break
+        trunc_retries = 0
         if p >= maxp or new == 0:
             break
         p += 1
@@ -232,7 +220,7 @@ def main():
     # Stage 1: ResultList links per pref (parallel across prefs)
     print("== Stage 1: discovering area groups ==", flush=True)
     rl_by_pref = {}
-    with ThreadPoolExecutor(max_workers=min(WORKERS, 8)) as ex:
+    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
         futs = {ex.submit(collect_resultlist_links, p, cache): p for p in PREFS}
         for f in as_completed(futs):
             f.result()

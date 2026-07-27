@@ -8,13 +8,15 @@ Also cleans name annotations (※..., （県名）, 　周辺).
 import json
 import os
 import re
-import subprocess
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import httputil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 STORES = os.path.join(REPO, "web", "data", "all_stores.json")
 CACHE = os.path.join(HERE, "crawl_cache.json")
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 
 BRANDS = ["コメリパワー", "コメリハード＆グリーン", "コメリハード&グリーン",
           "コメリリフォーム", "コメリＰＲＯ", "コメリPRO", "コメリ"]
@@ -43,15 +45,7 @@ def clean(name):
 
 
 def get(url):
-    cmd = ["curl", "-s", "-L", "--max-time", "25", "-A", UA, "-w", "\n%{http_code}", url]
-    r = subprocess.run(cmd, capture_output=True)
-    out = r.stdout.decode("utf-8", "replace")
-    body, _, code = out.rpartition("\n")
-    try:
-        c = int(code.strip())
-    except ValueError:
-        c = 0
-    return body if c == 200 else None
+    return httputil.get(url, want="body", ua=httputil.BROWSER_UA)
 
 
 def rl_names(url):

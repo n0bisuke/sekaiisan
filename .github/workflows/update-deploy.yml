@@ -4,6 +4,13 @@ on:
   schedule:
     # 毎週日曜 04:17 UTC (= 日本時間 日曜 13:17)。時刻は分散のため切の良い値を避ける
     - cron: "17 4 * * 0"
+  push:
+    # main/master へのプッシュで発火（アプリ/クローラ/ワークフロー本体の変更時）
+    branches: [main, master]
+    paths:
+      - 'web/**'
+      - 'crawl/**'
+      - '.github/workflows/**'
   workflow_dispatch:
     inputs:
       full_refresh:

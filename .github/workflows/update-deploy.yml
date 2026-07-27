@@ -37,8 +37,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            crawl_cache.json
-            fill_cache.json
+            crawl/crawl_cache.json
+            crawl/fill_cache.json
           key: komeri-crawl-cache-${{ github.run_id }}
           restore-keys: |
             komeri-crawl-cache-
@@ -46,22 +46,22 @@ jobs:
       - name: Full refresh (clear all caches)
         if: ${{ github.event.inputs.full_refresh == 'true' }}
         run: |
-          rm -f crawl_cache.json fill_cache.json
+          rm -f crawl/crawl_cache.json crawl/fill_cache.json
           echo "::notice::Full refresh: all caches cleared"
 
       - name: Crawl all stores
         env:
           FRESH_DISCOVERY: "1"
         run: |
-          python3 crawl_komeri.py
-          python3 fix_names.py
-          python3 fill_coords.py
+          python3 crawl/crawl_komeri.py
+          python3 crawl/fix_names.py
+          python3 crawl/fill_coords.py
 
       - name: Validate data (guard against blocked/partial crawl)
         run: |
           python3 - <<'PY'
           import json, sys
-          d = json.load(open('all_stores.json'))
+          d = json.load(open('web/data/all_stores.json'))
           n = len(d)
           withc = sum(1 for s in d if s.get('lat') is not None)
           print(f"stores={n}, with_coords={withc}")
@@ -79,7 +79,7 @@ jobs:
           python3 - <<'PY'
           import json
           from collections import Counter
-          d=json.load(open('all_stores.json'))
+          d=json.load(open('web/data/all_stores.json'))
           print(f"::notice::Total {len(d)} stores, {sum(1 for s in d if s.get('lat'))} with coords")
           for k,v in Counter(s['brand'] for s in d).most_common():
               print(f"  {k}: {v}")
@@ -88,7 +88,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p site
-          cp index.html styles.css app.js all_stores.json population.json site/
+          cp -r web/* site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

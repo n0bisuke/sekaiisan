@@ -6,11 +6,14 @@ hidden inputs (name{N}) aligned by index with storeDetail.aspx?id= links.
 Also cleans name annotations (※..., （県名）, 　周辺).
 """
 import json
+import os
 import re
 import subprocess
 
-STORES = "/Users/nobisuke/ds/2_playground/komeri/all_stores.json"
-CACHE = "/Users/nobisuke/ds/2_playground/komeri/crawl_cache.json"
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(HERE)
+STORES = os.path.join(REPO, "web", "data", "all_stores.json")
+CACHE = os.path.join(HERE, "crawl_cache.json")
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 
 BRANDS = ["コメリパワー", "コメリハード＆グリーン", "コメリハード&グリーン",

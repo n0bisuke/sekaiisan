@@ -21,8 +21,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 BASE = "https://www.komeri.com"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
-OUT = "/Users/nobisuke/ds/2_playground/komeri/all_stores.json"
-CACHE = "/Users/nobisuke/ds/2_playground/komeri/crawl_cache.json"
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(HERE)
+WEB_DATA = os.path.join(REPO, "web", "data")
+OUT = os.path.join(WEB_DATA, "all_stores.json")
+CACHE = os.path.join(HERE, "crawl_cache.json")
 WORKERS = 6
 
 PREFS = [

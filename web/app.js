@@ -1,5 +1,5 @@
 // コメリ 全店舗マップ — Leaflet + OpenStreetMap
-const DATA_URL = "all_stores.json";
+const DATA_URL = "data/all_stores.json";
 
 // brand -> {color, label}
 const BRANDS = {
@@ -209,7 +209,7 @@ fetch(DATA_URL)
     buildPrefFilter();
     buildBrandFilter();
     renderList();
-    return fetch("population.json").then(r => r.json());
+    return fetch("data/population.json").then(r => r.json());
   })
   .then(popData => {
     POP = popData.population || popData;

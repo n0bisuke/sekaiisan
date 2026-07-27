@@ -10,8 +10,10 @@ import re
 import time
 import subprocess
 
-STORES = "/Users/nobisuke/ds/2_playground/komeri/all_stores.json"
-CACHE = "/Users/nobisuke/ds/2_playground/komeri/fill_cache.json"
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(HERE)
+STORES = os.path.join(REPO, "web", "data", "all_stores.json")
+CACHE = os.path.join(HERE, "fill_cache.json")
 UA = "KomeriStoreMap/1.0"
 
 

@@ -1,49 +1,15 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/.vinext/
-/out/
-
-# misc
+# OS
 .DS_Store
+
+# editor
 *.pem
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# generated caches (managed locally / by GitHub Actions cache, not committed)
+/crawl/crawl_cache.json
+/crawl/fill_cache.json
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
-
-# komeri map app — generated caches & build dir (managed by GitHub Actions cache)
-/crawl_cache.json
-/fill_cache.json
-/geocode_cache.json
+# Pages deploy artifact (assembled by CI)
 /site/
+
+# downloaded source html (if re-fetched locally)
 /komeri.html

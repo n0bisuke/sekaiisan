@@ -2,7 +2,9 @@ name: Update stores & deploy to Pages
 
 on:
   schedule:
-    # 毎週日曜 04:17 UTC (= 日本時間 日曜 13:17)。時刻は分散のため切の良い値を避ける
+    # 毎週日曜 04:17 UTC (= 日本時間 日曜 13:17) にトリガーされるが、
+    # 実際のクロールは隔週（ISO週番号が偶数の週のみ）に間引く。
+    # GitHub Actionsのcron構文自体には「N週おき」の指定がないための回避策。
     - cron: "17 4 * * 0"
   push:
     # main/master へのプッシュで発火（アプリ/クローラ/ワークフロー本体の変更時）
@@ -41,13 +43,31 @@ jobs:
         with:
           python-version: "3.12"
 
-      # ---- クロール系（schedule / 手動実行のみ。pushではスキップ） ----
+      # schedule 実行は隔週(ISO週番号が偶数の週)だけクロールする。
+      # push/workflow_dispatch は常にクロール対象(pushはさらに下でスキップ)。
+      - name: Determine whether to crawl this run
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            WEEK=$(date -u +%V)
+            if [ $((10#$WEEK % 2)) -eq 0 ]; then
+              echo "run_crawl=true" >> "$GITHUB_OUTPUT"
+              echo "::notice::ISO week $WEEK is even — crawling this run"
+            else
+              echo "run_crawl=false" >> "$GITHUB_OUTPUT"
+              echo "::notice::ISO week $WEEK is odd — skipping crawl (biweekly schedule), deploying existing data only"
+            fi
+          else
+            echo "run_crawl=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ---- クロール系（schedule は隔週のみ・手動実行は常時。pushではスキップ） ----
       - name: Install Python deps
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
         run: pip install -r crawl/requirements.txt
 
       - name: Restore crawl cache
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -58,13 +78,13 @@ jobs:
             komeri-crawl-cache-
 
       - name: Full refresh (clear all caches)
-        if: ${{ github.event_name != 'push' && github.event.inputs.full_refresh == 'true' }}
+        if: ${{ github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true' && github.event.inputs.full_refresh == 'true' }}
         run: |
           rm -f crawl/crawl_cache.json crawl/fill_cache.json
           echo "::notice::Full refresh: all caches cleared"
 
       - name: Crawl all stores
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
         env:
           FRESH_DISCOVERY: "1"
         run: |
@@ -73,7 +93,7 @@ jobs:
           python3 crawl/fill_coords.py
 
       - name: Validate data (guard against blocked/partial crawl)
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
         run: |
           python3 - <<'PY'
           import json, sys
@@ -91,7 +111,7 @@ jobs:
           PY
 
       - name: Commit refreshed data back to repo
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"

@@ -3,7 +3,7 @@
   "tiers": {
     "world": {
       "point": 3,
-      "color": "#e0a816",
+      "color": "#ffc400",
       "label": "世界遺産"
     },
     "tentative_official": {
@@ -18,7 +18,7 @@
     },
     "national_treasure": {
       "point": 1,
-      "color": "#b87333",
+      "color": "#8a4b2e",
       "label": "国宝建造物"
     }
   },
@@ -516,13 +516,13 @@
         "奈良県"
       ],
       "category": "文化遺産",
-      "tier": "tentative_official",
-      "point": 2,
+      "tier": "world",
+      "point": 3,
       "lat": 34.4772,
       "lon": 135.818,
-      "note": "明日香村（2026年登録審査予定）",
+      "note": "明日香村・橿原市・桜井市",
       "sub": "",
-      "year": null,
+      "year": 2026,
       "buildings": [],
       "wh_site": "",
       "overlap": false

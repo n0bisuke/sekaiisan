@@ -3,10 +3,10 @@ const DATA_URL = "data/heritage.json";
 
 // tier -> {color, label, point} （heritage.json の tiers で上書きされる想成だがフォールバックも用意）
 const TIERS = {
-  "world":              { color: "#e0a816", label: "世界遺産",        point: 3 },
+  "world":              { color: "#ffc400", label: "世界遺産",        point: 3 },
   "tentative_official": { color: "#7d8da1", label: "公式暫定リスト",  point: 2 },
   "tentative":          { color: "#b9c0c9", label: "暫定リスト候補",  point: 2 },
-  "national_treasure":  { color: "#b87333", label: "国宝建造物",      point: 1 },
+  "national_treasure":  { color: "#8a4b2e", label: "国宝建造物",      point: 1 },
 };
 const TIER_ORDER = ["world", "tentative_official", "tentative", "national_treasure"];
 const CATEGORIES = ["文化遺産", "自然遺産", "混合遺産"];

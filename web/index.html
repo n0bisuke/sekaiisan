@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>コメリ 全店舗マップ ＆ 偏差値ランキング</title>
+<title>日本の世界遺産・国宝建造物マップ ＆ 都道府県ポイントランキング</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
@@ -12,59 +12,59 @@
 <body>
 <div id="tabs">
   <button class="tab active" data-view="map">🗺 マップ</button>
-  <button class="tab" data-view="ranking">🏆 コメリ偏差値ランキング</button>
+  <button class="tab" data-view="ranking">🏆 都道府県ポイントランキング</button>
 </div>
 
 <div id="app">
   <aside id="sidebar">
     <header id="brand">
       <button id="sidebarClose" aria-label="リストを閉じる">✕</button>
-      <h1>コメリ<br><span>全店舗マップ</span></h1>
+      <h1>世界遺産・国宝<br><span>日本の遺産マップ</span></h1>
       <p id="count">読み込み中…</p>
     </header>
     <div id="controls">
-      <input id="search" type="search" placeholder="店舗名・住所で検索" autocomplete="off" />
+      <input id="search" type="search" placeholder="名称・都道府県で検索" autocomplete="off" />
       <select id="prefFilter"><option value="">すべての都道府県</option></select>
-      <fieldset id="brandFilter"><legend>ブランド</legend></fieldset>
-      <label class="check"><input id="onlyMapped" type="checkbox" checked /> 座標ありのみ表示</label>
+      <fieldset id="tierFilter"><legend>種別</legend></fieldset>
+      <fieldset id="catFilter"><legend>カテゴリ</legend></fieldset>
     </div>
     <ul id="list"></ul>
     <footer id="src">
-      データ: <a href="https://www.komeri.com/shop/storeSearch/CriteriaInput.aspx" target="_blank" rel="noopener">コメリ店舗検索</a>／地図: ©OpenStreetMap contributors
+      データ: <a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/" target="_blank" rel="noopener">文化庁 世界遺産一覧</a>・<a href="https://www.bunka.go.jp/seisaku/bunkashingikai/bunkazai/sekaitokubetsu/shingi_kekka/besshi_8.html" target="_blank" rel="noopener">暫定リスト候補</a>・<a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html" target="_blank" rel="noopener">国宝建造物</a>／地図: ©OpenStreetMap contributors
     </footer>
   </aside>
   <main id="map"></main>
-  <button id="sidebarOpen" aria-label="店舗リストを開く">☰ 店舗リスト</button>
+  <button id="sidebarOpen" aria-label="リストを開く">☰ リスト</button>
 </div>
 
 <section id="rankingView" class="hidden">
   <div class="ranking-inner">
     <header class="ranking-head">
-      <h2>コメリ偏在度ランキング — 人口あたり店舗数の偏差値</h2>
+      <h2>都道府県ポイントランキング — 世界遺産・暫定リスト・国宝の“お宝”密度</h2>
       <p class="ranking-note">
-        「人口あたりのコメリ店舗数」で全国47都道府県の偏差値を算出。
-        <strong>人口が少ないのに店舗が多い地域ほど高得点（最強）</strong>。
-        店舗数は全ブランド（コメリ／PRO／パワー／H&G／リフォーム）合計、人口は2026年推計。
+        世界遺産<strong>3pt</strong>・暫定リスト（公式・候補）<strong>2pt</strong>・国宝建造物<strong>1pt</strong>を都道府県ごとに集計。
+        同じ場所が複数該当する場合は<strong>上位のポイントのみ反映</strong>（例: 姫路城は世界遺産3ptのみカウントし、国宝分は加算しない）。
+        複数都道府県にまたがる物件は両方の都道府県にポイントを付与します。
       </p>
       <div class="ranking-summary" id="rankingSummary"></div>
       <div class="rank-sort">
         <span class="rank-sort-label">並び順：</span>
-        <button class="sortbtn active" data-sort="dev">偏差値順（人口あたり店舗数）</button>
-        <button class="sortbtn" data-sort="stores">店舗数順</button>
+        <button class="sortbtn active" data-sort="point">ポイント順</button>
+        <button class="sortbtn" data-sort="world">世界遺産数順</button>
+        <button class="sortbtn" data-sort="count">物件数順</button>
       </div>
     </header>
     <div class="ranking-table-wrap">
       <table id="rankingTable">
         <thead><tr>
-          <th class="r">順位</th><th class="dev">偏差値</th><th class="pref">都道府県</th>
-          <th class="n">店舗数</th><th class="pop">人口</th><th class="per">店/10万人</th>
+          <th class="r">順位</th><th class="pt">ポイント</th><th class="pref">都道府県</th>
+          <th class="n">世界遺産</th><th class="n">暫定</th><th class="n">国宝</th><th class="n">物件計</th>
         </tr></thead>
         <tbody></tbody>
       </table>
     </div>
     <footer class="ranking-foot">
-      人口データ: Wikipedia「都道府県の人口一覧」各都道府県の推計人口（2026年5-7月）／
-      店舗データ: コメリ公式店舗検索より抽出
+      情報源: 文化庁「世界遺産一覧」「世界遺産暫定リスト記載候補」「国宝建造物」／座標: OpenStreetMap Nominatim／人口: Wikipedia 都道府県推計人口（2026年）
     </footer>
   </div>
 </section>

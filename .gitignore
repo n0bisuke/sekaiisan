@@ -4,12 +4,8 @@
 # editor
 *.pem
 
-# generated caches (managed locally / by GitHub Actions cache, not committed)
-/crawl/crawl_cache.json
-/crawl/fill_cache.json
+# geocoding cache (Nominatim, managed locally — not committed)
+/crawl/geocode_cache.json
 
 # Pages deploy artifact (assembled by CI)
 /site/
-
-# downloaded source html (if re-fetched locally)
-/komeri.html

@@ -1,33 +1,18 @@
-name: Update stores & deploy to Pages
+name: Deploy heritage map to Pages
 
 on:
-  schedule:
-    # 毎週日曜 04:17 UTC (= 日本時間 日曜 13:17) にトリガーされるが、
-    # 実際のクロールは隔週（ISO週番号が偶数の週のみ）に間引く。
-    # GitHub Actionsのcron構文自体には「N週おき」の指定がないための回避策。
-    - cron: "17 4 * * 0"
   push:
-    # main/master へのプッシュで発火（アプリ/クローラ/ワークフロー本体の変更時）
-    # → クロールはせずコミット済みデータを即デプロイ（初回ホスティング確認やUI変更反映を高速化）
     branches: [main, master]
     paths:
       - 'web/**'
-      - 'crawl/**'
       - '.github/workflows/**'
   workflow_dispatch:
-    inputs:
-      full_refresh:
-        description: "キャッシュを完全破棄して全件再取得（時間がかかります）"
-        type: boolean
-        default: false
 
-# push(デプロイのみ)は即終了。schedule/dispatch(クロール)は git commit-back するため contents:write
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
-# 同時実行は直前のものをキャンセル
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -35,106 +20,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      # schedule 実行は隔週(ISO週番号が偶数の週)だけクロールする。
-      # push/workflow_dispatch は常にクロール対象(pushはさらに下でスキップ)。
-      - name: Determine whether to crawl this run
-        id: gate
-        run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            WEEK=$(date -u +%V)
-            if [ $((10#$WEEK % 2)) -eq 0 ]; then
-              echo "run_crawl=true" >> "$GITHUB_OUTPUT"
-              echo "::notice::ISO week $WEEK is even — crawling this run"
-            else
-              echo "run_crawl=false" >> "$GITHUB_OUTPUT"
-              echo "::notice::ISO week $WEEK is odd — skipping crawl (biweekly schedule), deploying existing data only"
-            fi
-          else
-            echo "run_crawl=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      # ---- クロール系（schedule は隔週のみ・手動実行は常時。pushではスキップ） ----
-      - name: Install Python deps
-        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
-        run: pip install -r crawl/requirements.txt
-
-      - name: Restore crawl cache
-        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
-        uses: actions/cache@v4
-        with:
-          path: |
-            crawl/crawl_cache.json
-            crawl/fill_cache.json
-          key: komeri-crawl-cache-${{ github.run_id }}
-          restore-keys: |
-            komeri-crawl-cache-
-
-      - name: Full refresh (clear all caches)
-        if: ${{ github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true' && github.event.inputs.full_refresh == 'true' }}
-        run: |
-          rm -f crawl/crawl_cache.json crawl/fill_cache.json
-          echo "::notice::Full refresh: all caches cleared"
-
-      - name: Crawl all stores
-        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
-        env:
-          FRESH_DISCOVERY: "1"
-        run: |
-          python3 crawl/crawl_komeri.py
-          python3 crawl/fix_names.py
-          python3 crawl/fill_coords.py
-
-      - name: Validate data (guard against blocked/partial crawl)
-        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
+      - name: Validate heritage data
         run: |
           python3 - <<'PY'
           import json, sys
-          d = json.load(open('web/data/all_stores.json'))
-          n = len(d)
-          withc = sum(1 for s in d if s.get('lat') is not None)
-          print(f"stores={n}, with_coords={withc}")
-          if n < 1200:
-              print(f"::error::Too few stores ({n} < 1200) — crawl likely blocked. Aborting deploy.")
-              sys.exit(1)
-          if withc < n * 0.9:
-              print(f"::error::Coord coverage too low ({withc}/{n}). Aborting deploy.")
+          d = json.load(open('web/data/heritage.json'))
+          items = d.get('items', [])
+          n = len(items)
+          withc = sum(1 for it in items if it.get('lat') is not None)
+          print(f"items={n}, with_coords={withc}")
+          if n < 30:
+              print(f"::error::Too few items ({n}). Aborting deploy.")
               sys.exit(1)
           print("::notice::Data validation passed")
-          PY
-
-      - name: Commit refreshed data back to repo
-        if: github.event_name != 'push' && steps.gate.outputs.run_crawl == 'true'
-        continue-on-error: true
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add web/data/all_stores.json
-          if git diff --cached --quiet; then
-            echo "no data changes to commit"
-          else
-            git commit -m "chore: refresh store data (automated crawl)"
-            git push
-            echo "::notice::Committed refreshed store data"
-          fi
-
-      # ---- デプロイ系（常に実行。push時はコミット済みデータを使う） ----
-      - name: Show summary
-        run: |
-          python3 - <<'PY'
-          import json
-          from collections import Counter
-          d=json.load(open('web/data/all_stores.json'))
-          print(f"::notice::Total {len(d)} stores, {sum(1 for s in d if s.get('lat'))} with coords")
-          for k,v in Counter(s['brand'] for s in d).most_common():
-              print(f"  {k}: {v}")
           PY
 
       - name: Assemble site

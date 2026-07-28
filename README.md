@@ -1,94 +1,74 @@
-# コメリ 全店舗マップ
+# 日本の世界遺産・国宝建造物マップ
 
-コメリの全ブランド（コメリ／コメリPRO／コメリパワー／コメリハード＆グリーン／コメリリフォーム）の全国店舗を OpenStreetMap 上に表示する Web アプリです。
+国内の **世界遺産**（金）・ **世界遺産暫定リスト**（銀）・ **国宝建造物**（銅）の場所を OpenStreetMap 上にピン表示し、都道府県ごとのポイントランキングを作る Web アプリです。コメリ全店舗マップと同じ技術スタック（Leaflet + OpenStreetMap + markercluster、静的 JSON、vanilla JS、GitHub Pages）を踏襲しています。
+
+## 機能
+
+- 3種別をピン色で識別：**世界遺産=金**・**暫定リスト=銀**・**国宝建造物=銅**
+  - 暫定リストは「公式暫定リスト」（飛鳥・藤原の宮都など）と「暫定リスト記載候補」（文化庁審議27件）を色味で区別
+- **種別フィルタ**（世界遺産 / 公式暫定 / 暫定候補 / 国宝）と **カテゴリフィルタ**（文化遺産 / 自然遺産 / 混合遺産）を組み合わせて表示
+- 名称・都道府県で検索、都道府県絞り込み
+- サイドバーリスト ⇄ 地図マーカーの連動
+- ポップアップから Google Maps 経路・ストリートビュー・検索へリンク
+- **都道府県ポイントランキング** タブ
+
+### ポイント集計ルール
+
+| 種別 | ポイント |
+|------|----------|
+| 世界遺産 | 3 pt |
+| 暫定リスト（公式・候補） | 2 pt |
+| 国宝建造物 | 1 pt |
+
+- 同じ場所が複数種別に該当する場合は **上位のポイントのみ反映**（例: 姫路城は世界遺産3ptのみカウントし、国宝分は加算しない）
+- 複数都道府県にまたがる物件（白神山地=青森・秋田 など）は両方の都道府県にポイントを付与
 
 ## 構成
 
 ```
 .
-├── web/                        # 静的Webアプリ（これがGitHub Pagesにデプロイされる）
+├── web/                        # 静的Webアプリ（GitHub Pages にデプロイされる）
 │   ├── index.html
 │   ├── styles.css
 │   ├── app.js
 │   └── data/
-│       ├── all_stores.json     # 全店舗データ（クローラが生成）
-│       └── population.json     # 47都道府県人口（ランキング計算用）
-├── crawl/                      # データ収集スクリプト
-│   ├── crawl_komeri.py         # 公式店舗検索から全店舗をクロール（並行・キャッシュ付き）
-│   ├── fix_names.py            # 未開店店舗の「エラー」名をResultListから復元
-│   ├── fill_coords.py          # goo.gl未取得店舗の座標をNominatimで補完
-│   ├── crawl_cache.json        # クロールキャッシュ（gitignore対象）
-│   └── fill_cache.json         # 座標補完キャッシュ（gitignore対象）
-└── .github/workflows/update-deploy.yml   # 定期クロール → Pages デプロイ
+│       └── heritage.json       # 遺産データ（ビルダが生成）
+├── crawl/                      # データビルドスクリプト
+│   ├── build_heritage.py       # シード（世界遺産・暫定）+ 国宝JSON をマージし Nominatim で座標補完して heritage.json を生成
+│   └── national_treasures.json  # 国宝建造物リスト（facility単位、手元で作成）
+└── .github/workflows/update-deploy.yml   # push で Pages デプロイ
 ```
 
 ## 実行方法
 
-`web/data/all_stores.json` を `fetch()` で読み込むため、ローカルサーバ経由で開いてください（`file://` では動きません）。
+`web/data/heritage.json` を `fetch()` で読み込むため、ローカルサーバ経由で開いてください（`file://` では動きません）。
 
 ```bash
-cd /Users/nobisuke/ds/2_playground/komeri
 python3 -m http.server 8000
+# ブラウザで http://localhost:8000/web/ を開く
 ```
 
-ブラウザで http://localhost:8000/web/ を開く。
-
-## データ取得手順（`crawl/`）
-
-公式店舗検索 `https://www.komeri.com/shop/storeSearch/CriteriaInput.aspx` から以下を巡回します。
-
-1. 47都道府県ごとに `CriteriaResult.aspx?search={都道府県}` をページ巡回し、エリアグループ（`ResultList.aspx`）のリンクを収集
-2. 各 `ResultList.aspx` から `storeDetail.aspx?id={id}` の店舗IDを収集
-3. 各 `storeDetail.aspx` から店舗名・住所・電話番号・Google Maps 短縮リンクを取得
-4. Google Maps 短縮リンクを展開し `!3d{lat}!4d{lon}` から正確な緯度経度を取得（Nominatim 不使用）
+## データ再生成
 
 ```bash
-pip install -r crawl/requirements.txt   # httpx （CIでは自動インストール）
-python3 crawl/crawl_komeri.py    # web/data/all_stores.json を生成。キャッシュで再開可能
-python3 crawl/fix_names.py       # エラー名復元
-python3 crawl/fill_coords.py     # 座標補完
+python3 crawl/build_heritage.py    # web/data/heritage.json を生成
 ```
 
-スクリプトは配置場所（`crawl/`）基準でパスを解決するため、リポジトリルートから実行できます。
-HTTP通信は `crawl/httputil.py`（httpx + スレッド毎のコネクションプール/keep-alive）で共通化。curlサブプロセスを廃止し、20並列で約75リクエスト/秒（全クロール約2〜5分、従来のcurl版約25分から5〜10倍高速）。
+- 世界遺産26件・公式暫定1件・暫定候補27件は `build_heritage.py` 内に座標付きで埋め込み済み。
+- 国宝建造物は `crawl/national_treasures.json`（facility単位）から読み込み、OpenStreetMap の Nominatim で座標を補完（`crawl/geocode_cache.json` にキャッシュ）。
 
-## 機能
+## 情報源
 
-- 全店舗を地図上にマーカー表示（クラスタリング、ブランド別カラー）
-- ブランドフィルタ（チェックボックス・店舗数表示）
-- 店舗名・住所の部分一致検索
-- 都道府県フィルタ
-- サイドバーリスト ⇄ 地図マーカーの連動（クリックで移動・ポップアップ）
-- ポップアップから店舗詳細ページ・OSM 経路検索へリンク
-
-## データ・ライセンス
-
-- 店舗データ: [コメリ 公式店舗検索](https://www.komeri.com/shop/storeSearch/CriteriaInput.aspx) より抽出
-- 座標: 各店舗の Google Maps 短縮リンクを展開して取得（公式店舗詳細ページに埋め込まれたもの）
+- [文化庁 世界遺産一覧](https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/)
+- [文化庁 世界遺産暫定リスト記載候補（審議結果）](https://www.bunka.go.jp/seisaku/bunkashingikai/bunkazai/sekaitokubetsu/shingi_kekka/besshi_8.html)
+- [文化庁 国宝建造物](https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html)
+- 座標: OpenStreetMap Nominatim
 - 地図: © OpenStreetMap contributors（[ODbL](https://www.openstreetmap.org/copyright)）
 
-## GitHub Actions で定期更新 → GitHub Pages デプロイ
+## GitHub Pages デプロイ
 
-`.github/workflows/update-deploy.yml` が2週間に1回コメリ全店舗を再クロールしてリポジトリにコミットし、GitHub Pages にデプロイします。
-
-### 初回セットアップ
+`.github/workflows/update-deploy.yml` が `web/**` の変更を push するたびに `web/` を `site/` にコピーして Pages にデプロイします（クロール不要・数十秒）。
 
 1. リポジトリを GitHub にプッシュ
-2. GitHub リポジトリの **Settings → Pages** を開き、**Source** を「GitHub Actions」に設定
-3. **Actions** タブ →「Update stores & deploy to Pages」→「Run workflow」で手動実行
-4. 完了後、`https://<ユーザー名>.github.io/<リポジトリ名>/` で公開される
-
-### スケジュールとオプション
-
-- **push 実行**: `main`/`master` へのプッシュで発火（`web/**`・`crawl/**`・`.github/workflows/**` の変更時）。クロールはせずコミット済みの `web/data/` を即デプロイ（数十秒〜1分程度。UI変更やホスティング確認を高速化するため）。
-- **定期実行**: 毎週日曜 04:17 UTC（日本時間 13:17）にトリガーされますが、実際にクロールするのは**隔週（2週間に1回、ISO週番号が偶数の週）**のみ。奇数週は再クロールをスキップし、既存データをそのままデプロイします。クロールされる週は `FRESH_DISCOVERY` モードでエリア再発見のみ行い、店舗詳細・座標はキャッシュ再利用して高速化した上で、結果を `web/data/all_stores.json` としてリポジトリにコミットします。
-- **手動実行（workflow_dispatch）**: Actions UI からいつでも実行可能（隔週判定は無視して常にクロール）。`full_refresh` オプションを ON にするとキャッシュを完全破棄して全件再取得（時間がかかります、新店舗の大量追加時などに）。
-- **データ検証**: クロール結果が 1200店舗未満 or 座標カバレッジ 90%未満のとき（ブロック/部分失敗を疑う場合）はコミット・デプロイを中止します。
-
-### キャッシュ
-
-`crawl/crawl_cache.json` / `crawl/fill_cache.json` は `.gitignore` 対象（リポジトリに含めない）。代わりに `actions/cache` で実行間で永続化し、再実行を高速化します。
-
-### デプロイされるファイル
-
-`web/` の中身（`index.html` / `styles.css` / `app.js` / `data/`）が `site/` にコピーされて Pages にデプロイされます（相対パスで動作するため project pages でもOK）。
+2. **Settings → Pages** の **Source** を「GitHub Actions」に設定
+3. `https://<ユーザー名>.github.io/<リポジトリ名>/` で公開

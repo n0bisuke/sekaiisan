@@ -1,0 +1,4026 @@
+{
+  "generated": "hand-curated + Nominatim geocoded",
+  "tiers": {
+    "world": {
+      "point": 3,
+      "color": "#e0a816",
+      "label": "世界遺産"
+    },
+    "tentative_official": {
+      "point": 2,
+      "color": "#7d8da1",
+      "label": "公式暫定リスト"
+    },
+    "tentative": {
+      "point": 2,
+      "color": "#b9c0c9",
+      "label": "暫定リスト候補"
+    },
+    "national_treasure": {
+      "point": 1,
+      "color": "#b87333",
+      "label": "国宝建造物"
+    }
+  },
+  "items": [
+    {
+      "id": "h000",
+      "name": "法隆寺地域の仏教建造物",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 34.6143,
+      "lon": 135.7356,
+      "note": "法隆寺",
+      "sub": "",
+      "year": 1993,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h001",
+      "name": "姫路城",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 34.8394,
+      "lon": 134.6939,
+      "note": "",
+      "sub": "",
+      "year": 1993,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h002",
+      "name": "屋久島",
+      "prefectures": [
+        "鹿児島県"
+      ],
+      "category": "自然遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 30.3533,
+      "lon": 130.5061,
+      "note": "",
+      "sub": "",
+      "year": 1993,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h003",
+      "name": "白神山地",
+      "prefectures": [
+        "青森県",
+        "秋田県"
+      ],
+      "category": "自然遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 40.45,
+      "lon": 140.05,
+      "note": "",
+      "sub": "",
+      "year": 1993,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h004",
+      "name": "古都京都の文化財",
+      "prefectures": [
+        "京都府",
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 35.0116,
+      "lon": 135.7681,
+      "note": "京都市・宇治市・大津市",
+      "sub": "",
+      "year": 1994,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h005",
+      "name": "白川郷・五箇山の合掌造り集落",
+      "prefectures": [
+        "岐阜県",
+        "富山県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 36.2539,
+      "lon": 136.902,
+      "note": "白川村",
+      "sub": "",
+      "year": 1995,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h006",
+      "name": "原爆ドーム",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 34.3955,
+      "lon": 132.4536,
+      "note": "",
+      "sub": "",
+      "year": 1996,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h007",
+      "name": "厳島神社",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 34.2959,
+      "lon": 132.3196,
+      "note": "",
+      "sub": "",
+      "year": 1996,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h008",
+      "name": "古都奈良の文化財",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 34.689,
+      "lon": 135.8398,
+      "note": "東大寺",
+      "sub": "",
+      "year": 1998,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h009",
+      "name": "日光の社寺",
+      "prefectures": [
+        "栃木県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 36.7575,
+      "lon": 139.599,
+      "note": "日光東照宮",
+      "sub": "",
+      "year": 1999,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h010",
+      "name": "琉球王国のグスク及び関連遺産群",
+      "prefectures": [
+        "沖縄県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 26.217,
+      "lon": 127.7194,
+      "note": "首里城",
+      "sub": "",
+      "year": 2000,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h011",
+      "name": "紀伊山地の霊場と参詣道",
+      "prefectures": [
+        "三重県",
+        "奈良県",
+        "和歌山県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 33.8729,
+      "lon": 135.7823,
+      "note": "熊野本宮大社",
+      "sub": "",
+      "year": 2004,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h012",
+      "name": "知床",
+      "prefectures": [
+        "北海道"
+      ],
+      "category": "自然遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 44.15,
+      "lon": 145.05,
+      "note": "",
+      "sub": "",
+      "year": 2005,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h013",
+      "name": "石見銀山遺跡とその文化的景観",
+      "prefectures": [
+        "島根県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 35.2667,
+      "lon": 132.4333,
+      "note": "大森銀山",
+      "sub": "",
+      "year": 2007,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h014",
+      "name": "小笠原諸島",
+      "prefectures": [
+        "東京都"
+      ],
+      "category": "自然遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 27.06,
+      "lon": 142.21,
+      "note": "父島",
+      "sub": "",
+      "year": 2011,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h015",
+      "name": "平泉―仏国土（浄土）を表す建築・庭園及び考古学的遺跡群―",
+      "prefectures": [
+        "岩手県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 38.9867,
+      "lon": 141.108,
+      "note": "中尊寺",
+      "sub": "",
+      "year": 2011,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h016",
+      "name": "富士山―信仰の対象と芸術の源泉―",
+      "prefectures": [
+        "山梨県",
+        "静岡県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 35.3606,
+      "lon": 138.7274,
+      "note": "",
+      "sub": "",
+      "year": 2013,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h017",
+      "name": "富岡製糸場と絹産業遺産群",
+      "prefectures": [
+        "群馬県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 36.2569,
+      "lon": 138.8876,
+      "note": "富岡製糸場",
+      "sub": "",
+      "year": 2014,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h018",
+      "name": "明治日本の産業革命遺産 製鉄・製鋼、造船、石炭産業",
+      "prefectures": [
+        "福岡県",
+        "佐賀県",
+        "長崎県",
+        "熊本県",
+        "鹿児島県",
+        "山口県",
+        "岩手県",
+        "静岡県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 32.628,
+      "lon": 129.7256,
+      "note": "端島（軍艦島）代表",
+      "sub": "",
+      "year": 2015,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h019",
+      "name": "ル・コルビュジエの建築作品―近代建築運動への顕著な貢献―",
+      "prefectures": [
+        "東京都"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 35.7198,
+      "lon": 139.7764,
+      "note": "国立西洋美術館",
+      "sub": "",
+      "year": 2016,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h020",
+      "name": "「神宿る島」宗像・沖ノ島と関連遺産群",
+      "prefectures": [
+        "福岡県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 33.7989,
+      "lon": 130.0826,
+      "note": "沖ノ島",
+      "sub": "",
+      "year": 2017,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h021",
+      "name": "長崎と天草地方の潜伏キリシタン関連遺産",
+      "prefectures": [
+        "長崎県",
+        "熊本県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 32.7432,
+      "lon": 129.873,
+      "note": "大浦天主堂",
+      "sub": "",
+      "year": 2018,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h022",
+      "name": "百舌鳥・古市古墳群―古代日本の墳墓群―",
+      "prefectures": [
+        "大阪府"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 34.5645,
+      "lon": 135.4878,
+      "note": "仁徳天皇陵",
+      "sub": "",
+      "year": 2019,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h023",
+      "name": "奄美大島、徳之島、沖縄島北部及び西表島",
+      "prefectures": [
+        "鹿児島県",
+        "沖縄県"
+      ],
+      "category": "自然遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 28.37,
+      "lon": 129.48,
+      "note": "奄美大島代表",
+      "sub": "",
+      "year": 2021,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h024",
+      "name": "北海道・北東北の縄文遺跡群",
+      "prefectures": [
+        "北海道",
+        "青森県",
+        "岩手県",
+        "秋田県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 40.7967,
+      "lon": 140.74,
+      "note": "三内丸山遺跡代表",
+      "sub": "",
+      "year": 2021,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h025",
+      "name": "佐渡島の金山",
+      "prefectures": [
+        "新潟県"
+      ],
+      "category": "文化遺産",
+      "tier": "world",
+      "point": 3,
+      "lat": 37.7833,
+      "lon": 138.2667,
+      "note": "相川金山",
+      "sub": "",
+      "year": 2024,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h026",
+      "name": "飛鳥・藤原の宮都とその関連資産群",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative_official",
+      "point": 2,
+      "lat": 34.4772,
+      "lon": 135.818,
+      "note": "明日香村（2026年登録審査予定）",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h027",
+      "name": "北海道東部の窪みで残る大規模竪穴住居跡群",
+      "prefectures": [
+        "北海道"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 43.67,
+      "lon": 144.93,
+      "note": "標津町代表",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h028",
+      "name": "最上川の文化的景観",
+      "prefectures": [
+        "山形県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 38.65,
+      "lon": 140.05,
+      "note": "",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h029",
+      "name": "松島－貝塚群に見る縄文の原風景",
+      "prefectures": [
+        "宮城県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 38.37,
+      "lon": 141.0,
+      "note": "",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h030",
+      "name": "水戸藩の学問・教育遺産群",
+      "prefectures": [
+        "茨城県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.3656,
+      "lon": 140.4744,
+      "note": "弘道館",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h031",
+      "name": "足尾銅山",
+      "prefectures": [
+        "栃木県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.62,
+      "lon": 139.42,
+      "note": "日光市足尾",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h032",
+      "name": "足利学校と足利氏の遺産",
+      "prefectures": [
+        "栃木県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.447,
+      "lon": 139.449,
+      "note": "",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h033",
+      "name": "埼玉古墳群",
+      "prefectures": [
+        "埼玉県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.1267,
+      "lon": 139.4536,
+      "note": "行田市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h034",
+      "name": "近世高岡の文化遺産群",
+      "prefectures": [
+        "富山県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.7486,
+      "lon": 137.0225,
+      "note": "高岡市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h035",
+      "name": "立山・黒部",
+      "prefectures": [
+        "富山県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.42,
+      "lon": 137.55,
+      "note": "立山",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h036",
+      "name": "城下町金沢の文化遺産群と文化的景観",
+      "prefectures": [
+        "石川県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.5944,
+      "lon": 136.6256,
+      "note": "金沢市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h037",
+      "name": "霊峰白山と山麓の文化的景観",
+      "prefectures": [
+        "石川県",
+        "福井県",
+        "岐阜県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.15,
+      "lon": 136.4,
+      "note": "白山",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h038",
+      "name": "若狭の社寺建造物群と文化的景観",
+      "prefectures": [
+        "福井県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 35.4639,
+      "lon": 135.7342,
+      "note": "小浜市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h039",
+      "name": "日本製糸業近代化遺産",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.0339,
+      "lon": 138.0536,
+      "note": "岡谷市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h040",
+      "name": "善光寺と門前町",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.7006,
+      "lon": 138.1908,
+      "note": "長野市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h041",
+      "name": "松本城",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.2397,
+      "lon": 137.9694,
+      "note": "",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h042",
+      "name": "妻籠宿・馬籠宿と中山道",
+      "prefectures": [
+        "長野県",
+        "岐阜県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 35.49,
+      "lon": 137.58,
+      "note": "妻籠宿代表",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h043",
+      "name": "飛騨高山の町並みと祭礼の場",
+      "prefectures": [
+        "岐阜県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 36.1407,
+      "lon": 137.2522,
+      "note": "高山市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h044",
+      "name": "天橋立",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 35.5472,
+      "lon": 135.1856,
+      "note": "宮津市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h045",
+      "name": "近世岡山の文化・土木遺産群",
+      "prefectures": [
+        "岡山県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 34.6552,
+      "lon": 133.9195,
+      "note": "岡山市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h046",
+      "name": "三徳山",
+      "prefectures": [
+        "鳥取県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 35.4033,
+      "lon": 133.8842,
+      "note": "三朝町・三佛寺投入堂",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h047",
+      "name": "萩",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 34.4081,
+      "lon": 131.3944,
+      "note": "萩市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h048",
+      "name": "錦帯橋と岩国の町割",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 34.1672,
+      "lon": 132.1661,
+      "note": "岩国市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h049",
+      "name": "山口に花開いた大内文化の遺産",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 34.1857,
+      "lon": 131.4736,
+      "note": "山口市",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h050",
+      "name": "四国八十八箇所霊場と遍路道",
+      "prefectures": [
+        "徳島県",
+        "高知県",
+        "愛媛県",
+        "香川県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 34.0716,
+      "lon": 134.5594,
+      "note": "第1番霊山寺代表",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h051",
+      "name": "宇佐・国東",
+      "prefectures": [
+        "大分県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 33.4972,
+      "lon": 131.3722,
+      "note": "宇佐神宮",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h052",
+      "name": "阿蘇",
+      "prefectures": [
+        "熊本県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 32.94,
+      "lon": 130.99,
+      "note": "阿蘇山",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h053",
+      "name": "竹富島・波照間島の文化的景観",
+      "prefectures": [
+        "沖縄県"
+      ],
+      "category": "文化遺産",
+      "tier": "tentative",
+      "point": 2,
+      "lat": 24.33,
+      "lon": 124.16,
+      "note": "竹富島",
+      "sub": "",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h054",
+      "name": "中尊寺",
+      "prefectures": [
+        "岩手県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 39.000941,
+      "lon": 141.1020699,
+      "note": "",
+      "sub": "金色堂",
+      "year": null,
+      "buildings": [
+        "金色堂"
+      ],
+      "wh_site": "平泉―仏国土を表す建築・庭園及び考古学的遺跡群",
+      "overlap": true
+    },
+    {
+      "id": "h055",
+      "name": "瑞巖寺",
+      "prefectures": [
+        "宮城県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 38.3721758,
+      "lon": 141.0595579,
+      "note": "",
+      "sub": "本堂（元方丈）、庫裏及び廊下",
+      "year": null,
+      "buildings": [
+        "本堂（元方丈）",
+        "庫裏及び廊下"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h056",
+      "name": "大崎八幡宮",
+      "prefectures": [
+        "宮城県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 38.2716378,
+      "lon": 140.8448528,
+      "note": "",
+      "sub": "本社本殿、幣殿、拝殿",
+      "year": null,
+      "buildings": [
+        "本社本殿",
+        "幣殿",
+        "拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h057",
+      "name": "羽黒山（出羽三山神社）",
+      "prefectures": [
+        "山形県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 38.7024861,
+      "lon": 139.9828086,
+      "note": "",
+      "sub": "五重塔",
+      "year": null,
+      "buildings": [
+        "五重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h058",
+      "name": "日光東照宮",
+      "prefectures": [
+        "栃木県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 36.7576378,
+      "lon": 139.59911,
+      "note": "",
+      "sub": "本殿、石の間及び拝殿、正面及び背面唐門、東西透塀、陽明門、東西廻廊",
+      "year": null,
+      "buildings": [
+        "本殿、石の間及び拝殿",
+        "正面及び背面唐門",
+        "東西透塀",
+        "陽明門",
+        "東西廻廊"
+      ],
+      "wh_site": "日光の社寺",
+      "overlap": true
+    },
+    {
+      "id": "h059",
+      "name": "輪王寺（大猷院霊廟）",
+      "prefectures": [
+        "栃木県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 36.7547249,
+      "lon": 139.600759,
+      "note": "",
+      "sub": "本殿、相の間及び拝殿",
+      "year": null,
+      "buildings": [
+        "本殿、相の間及び拝殿"
+      ],
+      "wh_site": "日光の社寺",
+      "overlap": true
+    },
+    {
+      "id": "h060",
+      "name": "鑁阿寺",
+      "prefectures": [
+        "栃木県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.3374074,
+      "lon": 139.452088,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h061",
+      "name": "旧富岡製糸場",
+      "prefectures": [
+        "群馬県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 36.2554386,
+      "lon": 138.8876423,
+      "note": "",
+      "sub": "繰糸所、東置繭所、西置繭所",
+      "year": null,
+      "buildings": [
+        "繰糸所",
+        "東置繭所",
+        "西置繭所"
+      ],
+      "wh_site": "富岡製糸場と絹産業遺産群",
+      "overlap": true
+    },
+    {
+      "id": "h062",
+      "name": "歓喜院",
+      "prefectures": [
+        "埼玉県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.2280422,
+      "lon": 139.3752411,
+      "note": "",
+      "sub": "聖天堂",
+      "year": null,
+      "buildings": [
+        "聖天堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h063",
+      "name": "正福寺",
+      "prefectures": [
+        "東京都"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.7645498,
+      "lon": 139.459286,
+      "note": "",
+      "sub": "地蔵堂",
+      "year": null,
+      "buildings": [
+        "地蔵堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h064",
+      "name": "迎賓館赤坂離宮（旧東宮御所）",
+      "prefectures": [
+        "東京都"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.6803094,
+      "lon": 139.7292145,
+      "note": "",
+      "sub": "本館",
+      "year": null,
+      "buildings": [
+        "本館"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h065",
+      "name": "白水阿弥陀堂（願成寺）",
+      "prefectures": [
+        "福島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 37.0365151,
+      "lon": 140.8372945,
+      "note": "",
+      "sub": "阿弥陀堂",
+      "year": null,
+      "buildings": [
+        "阿弥陀堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h066",
+      "name": "松本城",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 36.2386353,
+      "lon": 137.9688709,
+      "note": "",
+      "sub": "天守、乾小天守、渡櫓、辰巳附櫓、月見櫓",
+      "year": null,
+      "buildings": [
+        "天守",
+        "乾小天守",
+        "渡櫓",
+        "辰巳附櫓",
+        "月見櫓"
+      ],
+      "wh_site": "",
+      "overlap": true
+    },
+    {
+      "id": "h067",
+      "name": "安楽寺",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.3521426,
+      "lon": 138.1531466,
+      "note": "",
+      "sub": "八角三重塔",
+      "year": null,
+      "buildings": [
+        "八角三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h068",
+      "name": "善光寺",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.6614233,
+      "lon": 138.1876577,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h069",
+      "name": "大法寺",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.3812444,
+      "lon": 138.1488207,
+      "note": "",
+      "sub": "三重塔",
+      "year": null,
+      "buildings": [
+        "三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h070",
+      "name": "仁科神明宮",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.4496223,
+      "lon": 137.8789633,
+      "note": "",
+      "sub": "本殿、中門（前殿）",
+      "year": null,
+      "buildings": [
+        "本殿",
+        "中門（前殿）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h071",
+      "name": "旧開智学校",
+      "prefectures": [
+        "長野県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.2430591,
+      "lon": 137.9682275,
+      "note": "",
+      "sub": "校舎",
+      "year": null,
+      "buildings": [
+        "校舎"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h072",
+      "name": "永保寺",
+      "prefectures": [
+        "岐阜県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.3464247,
+      "lon": 137.1301778,
+      "note": "",
+      "sub": "開山堂、観音堂",
+      "year": null,
+      "buildings": [
+        "開山堂",
+        "観音堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h073",
+      "name": "安国寺",
+      "prefectures": [
+        "岐阜県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.864095,
+      "lon": 134.9608109,
+      "note": "",
+      "sub": "経蔵",
+      "year": null,
+      "buildings": [
+        "経蔵"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h074",
+      "name": "久能山東照宮",
+      "prefectures": [
+        "静岡県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9647856,
+      "lon": 138.4675976,
+      "note": "",
+      "sub": "本殿、石の間及び拝殿",
+      "year": null,
+      "buildings": [
+        "本殿、石の間及び拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h075",
+      "name": "如庵（有楽苑）",
+      "prefectures": [
+        "愛知県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.0629231,
+      "lon": 131.53777,
+      "note": "",
+      "sub": "書院及び茶室",
+      "year": null,
+      "buildings": [
+        "書院及び茶室"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h076",
+      "name": "犬山城",
+      "prefectures": [
+        "愛知県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.3883304,
+      "lon": 136.9392776,
+      "note": "",
+      "sub": "天守",
+      "year": null,
+      "buildings": [
+        "天守"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h077",
+      "name": "金蓮寺",
+      "prefectures": [
+        "愛知県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.8093781,
+      "lon": 137.0725854,
+      "note": "",
+      "sub": "弥陀堂",
+      "year": null,
+      "buildings": [
+        "弥陀堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h078",
+      "name": "専修寺",
+      "prefectures": [
+        "三重県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.5976011,
+      "lon": 131.238904,
+      "note": "",
+      "sub": "御影堂、如来堂",
+      "year": null,
+      "buildings": [
+        "御影堂",
+        "如来堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h079",
+      "name": "石山寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.96047,
+      "lon": 135.9054936,
+      "note": "",
+      "sub": "多宝塔、本堂",
+      "year": null,
+      "buildings": [
+        "多宝塔",
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h080",
+      "name": "彦根城",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.2771014,
+      "lon": 136.2517174,
+      "note": "",
+      "sub": "天守、附櫓、多聞櫓",
+      "year": null,
+      "buildings": [
+        "天守",
+        "附櫓",
+        "多聞櫓"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h081",
+      "name": "光浄院（園城寺塔頭）",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.1654282,
+      "lon": 137.9206087,
+      "note": "",
+      "sub": "客殿",
+      "year": null,
+      "buildings": [
+        "客殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h082",
+      "name": "勧学院（園城寺塔頭）",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0118664,
+      "lon": 135.8523785,
+      "note": "",
+      "sub": "客殿",
+      "year": null,
+      "buildings": [
+        "客殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h083",
+      "name": "御上神社",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.049466,
+      "lon": 136.0268824,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h084",
+      "name": "金剛輪寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.1612816,
+      "lon": 136.2830436,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h085",
+      "name": "西明寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.1833433,
+      "lon": 136.28475,
+      "note": "",
+      "sub": "本堂、三重塔",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h086",
+      "name": "園城寺（三井寺）",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0133901,
+      "lon": 135.8528467,
+      "note": "",
+      "sub": "金堂、新羅善神堂",
+      "year": null,
+      "buildings": [
+        "金堂",
+        "新羅善神堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h087",
+      "name": "延暦寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.095705,
+      "lon": 135.8468099,
+      "note": "",
+      "sub": "根本中堂",
+      "year": null,
+      "buildings": [
+        "根本中堂"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h088",
+      "name": "長寿寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0079299,
+      "lon": 135.8606418,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h089",
+      "name": "常楽寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9883054,
+      "lon": 135.9204178,
+      "note": "",
+      "sub": "本堂、三重塔",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h090",
+      "name": "都久夫須麻神社（竹生島）",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.4204703,
+      "lon": 136.1442814,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h091",
+      "name": "宝厳寺（竹生島）",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.4211014,
+      "lon": 136.1433791,
+      "note": "",
+      "sub": "唐門",
+      "year": null,
+      "buildings": [
+        "唐門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h092",
+      "name": "善水寺",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0314183,
+      "lon": 136.0595869,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h093",
+      "name": "苗村神社",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0650246,
+      "lon": 136.1281923,
+      "note": "",
+      "sub": "西本殿",
+      "year": null,
+      "buildings": [
+        "西本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h094",
+      "name": "日吉大社",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0723729,
+      "lon": 135.8643584,
+      "note": "",
+      "sub": "西本宮本殿及び拝殿、東本宮本殿及び拝殿",
+      "year": null,
+      "buildings": [
+        "西本宮本殿及び拝殿",
+        "東本宮本殿及び拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h095",
+      "name": "大笹原神社",
+      "prefectures": [
+        "滋賀県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0765053,
+      "lon": 136.0658515,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h096",
+      "name": "本願寺（西本願寺）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.9918325,
+      "lon": 135.7510462,
+      "note": "",
+      "sub": "飛雲閣、書院（対面所及び白書院）、唐門、北能舞台、黒書院及び伝廊、御影堂…",
+      "year": null,
+      "buildings": [
+        "飛雲閣",
+        "書院（対面所及び白書院）",
+        "唐門",
+        "北能舞台",
+        "黒書院及び伝廊",
+        "御影堂",
+        "阿弥陀堂"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h097",
+      "name": "慈照寺（銀閣寺）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.0272032,
+      "lon": 135.7974411,
+      "note": "",
+      "sub": "東求堂、銀閣",
+      "year": null,
+      "buildings": [
+        "東求堂",
+        "銀閣"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h098",
+      "name": "醍醐寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.9513438,
+      "lon": 135.8209305,
+      "note": "",
+      "sub": "五重塔、金堂、清滝宮拝殿、薬師堂",
+      "year": null,
+      "buildings": [
+        "五重塔",
+        "金堂",
+        "清滝宮拝殿",
+        "薬師堂"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h099",
+      "name": "三宝院（醍醐寺塔頭）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.9521274,
+      "lon": 135.8195129,
+      "note": "",
+      "sub": "唐門、殿堂表書院",
+      "year": null,
+      "buildings": [
+        "唐門",
+        "殿堂表書院"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h100",
+      "name": "法界寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9341695,
+      "lon": 135.8148884,
+      "note": "",
+      "sub": "阿弥陀堂",
+      "year": null,
+      "buildings": [
+        "阿弥陀堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h101",
+      "name": "平等院",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.8895001,
+      "lon": 135.8074525,
+      "note": "",
+      "sub": "鳳凰堂中堂、両翼廊（北・南）及び尾廊",
+      "year": null,
+      "buildings": [
+        "鳳凰堂中堂",
+        "両翼廊（北・南）及び尾廊"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h102",
+      "name": "妙喜庵",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.8922749,
+      "lon": 135.6803234,
+      "note": "",
+      "sub": "書院及び茶室（待庵）",
+      "year": null,
+      "buildings": [
+        "書院及び茶室（待庵）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h103",
+      "name": "大報恩寺（千本釈迦堂）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.031704,
+      "lon": 135.7399303,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h104",
+      "name": "大徳寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0427917,
+      "lon": 135.7465517,
+      "note": "",
+      "sub": "唐門、方丈及び玄関",
+      "year": null,
+      "buildings": [
+        "唐門",
+        "方丈及び玄関"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h105",
+      "name": "大仙院（大徳寺塔頭）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.044516,
+      "lon": 135.7458129,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h106",
+      "name": "龍光院（大徳寺塔頭）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0420209,
+      "lon": 135.7434877,
+      "note": "",
+      "sub": "書院",
+      "year": null,
+      "buildings": [
+        "書院"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h107",
+      "name": "竜吟庵（大徳寺塔頭）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9774453,
+      "lon": 135.7748576,
+      "note": "",
+      "sub": "方丈",
+      "year": null,
+      "buildings": [
+        "方丈"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h108",
+      "name": "蓮華王院（三十三間堂）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9881723,
+      "lon": 135.7717781,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h109",
+      "name": "東福寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9771706,
+      "lon": 135.7745754,
+      "note": "",
+      "sub": "三門",
+      "year": null,
+      "buildings": [
+        "三門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h110",
+      "name": "宇治上神社",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.8920528,
+      "lon": 135.8114573,
+      "note": "",
+      "sub": "本殿、拝殿",
+      "year": null,
+      "buildings": [
+        "本殿",
+        "拝殿"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h111",
+      "name": "浄瑠璃寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.7156634,
+      "lon": 135.8730739,
+      "note": "",
+      "sub": "本堂、三重塔",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h112",
+      "name": "海住山寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.777,
+      "lon": 135.861688,
+      "note": "",
+      "sub": "五重塔",
+      "year": null,
+      "buildings": [
+        "五重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h113",
+      "name": "二条城",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.0140076,
+      "lon": 135.7485369,
+      "note": "",
+      "sub": "二の丸御殿",
+      "year": null,
+      "buildings": [
+        "二の丸御殿"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h114",
+      "name": "教王護国寺（東寺）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.9806311,
+      "lon": 135.7477192,
+      "note": "",
+      "sub": "五重塔、蓮花門、金堂、大師堂（西院御影堂）",
+      "year": null,
+      "buildings": [
+        "五重塔",
+        "蓮花門",
+        "金堂",
+        "大師堂（西院御影堂）"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h115",
+      "name": "観智院（東寺塔頭）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9827771,
+      "lon": 135.7479605,
+      "note": "",
+      "sub": "客殿",
+      "year": null,
+      "buildings": [
+        "客殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h116",
+      "name": "清水寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.994303,
+      "lon": 135.7844389,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h117",
+      "name": "南禅寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0115254,
+      "lon": 135.7927213,
+      "note": "",
+      "sub": "方丈",
+      "year": null,
+      "buildings": [
+        "方丈"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h118",
+      "name": "仁和寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.0298117,
+      "lon": 135.7141499,
+      "note": "",
+      "sub": "金堂",
+      "year": null,
+      "buildings": [
+        "金堂"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h119",
+      "name": "豊国神社",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9914108,
+      "lon": 135.7720866,
+      "note": "",
+      "sub": "唐門",
+      "year": null,
+      "buildings": [
+        "唐門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h120",
+      "name": "広隆寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0147515,
+      "lon": 135.7063079,
+      "note": "",
+      "sub": "桂宮院本堂",
+      "year": null,
+      "buildings": [
+        "桂宮院本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h121",
+      "name": "高山寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.060479,
+      "lon": 135.678075,
+      "note": "",
+      "sub": "石水院（五所堂）",
+      "year": null,
+      "buildings": [
+        "石水院（五所堂）"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h122",
+      "name": "賀茂別雷神社（上賀茂神社）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.0604683,
+      "lon": 135.7522589,
+      "note": "",
+      "sub": "本殿及び権殿",
+      "year": null,
+      "buildings": [
+        "本殿及び権殿"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h123",
+      "name": "賀茂御祖神社（下鴨神社）",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 35.0341725,
+      "lon": 135.7724956,
+      "note": "",
+      "sub": "東本殿及び西本殿",
+      "year": null,
+      "buildings": [
+        "東本殿及び西本殿"
+      ],
+      "wh_site": "古都京都の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h124",
+      "name": "光明寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.765148,
+      "lon": 135.892716,
+      "note": "",
+      "sub": "二王門",
+      "year": null,
+      "buildings": [
+        "二王門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h125",
+      "name": "妙法院",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.99011,
+      "lon": 135.7753332,
+      "note": "",
+      "sub": "庫裏",
+      "year": null,
+      "buildings": [
+        "庫裏"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h126",
+      "name": "北野天満宮",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0304752,
+      "lon": 135.7349176,
+      "note": "",
+      "sub": "本殿、石の間、拝殿及び楽の間",
+      "year": null,
+      "buildings": [
+        "本殿、石の間、拝殿及び楽の間"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h127",
+      "name": "知恩院",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0056216,
+      "lon": 135.7835389,
+      "note": "",
+      "sub": "三門、本堂（御影堂）",
+      "year": null,
+      "buildings": [
+        "三門",
+        "本堂（御影堂）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h128",
+      "name": "石清水八幡宮",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.8797343,
+      "lon": 135.7000516,
+      "note": "",
+      "sub": "本社本殿、摂社武内社本殿、瑞籬、幣殿、舞殿、楼門…",
+      "year": null,
+      "buildings": [
+        "本社本殿",
+        "摂社武内社本殿",
+        "瑞籬",
+        "幣殿",
+        "舞殿",
+        "楼門",
+        "東門",
+        "西門",
+        "廻廊"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h129",
+      "name": "八坂神社",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.0036027,
+      "lon": 135.7782611,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h130",
+      "name": "萬福寺",
+      "prefectures": [
+        "京都府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.9139921,
+      "lon": 135.8068449,
+      "note": "",
+      "sub": "大雄宝殿、法堂、天王殿",
+      "year": null,
+      "buildings": [
+        "大雄宝殿",
+        "法堂",
+        "天王殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h131",
+      "name": "観心寺",
+      "prefectures": [
+        "大阪府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.4369353,
+      "lon": 135.5983698,
+      "note": "",
+      "sub": "金堂",
+      "year": null,
+      "buildings": [
+        "金堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h132",
+      "name": "住吉大社",
+      "prefectures": [
+        "大阪府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6130027,
+      "lon": 135.4931012,
+      "note": "",
+      "sub": "本殿第一殿、本殿第二殿、本殿第三殿、本殿第四殿",
+      "year": null,
+      "buildings": [
+        "本殿第一殿",
+        "本殿第二殿",
+        "本殿第三殿",
+        "本殿第四殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h133",
+      "name": "孝恩寺",
+      "prefectures": [
+        "大阪府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.3971592,
+      "lon": 135.3945693,
+      "note": "",
+      "sub": "観音堂",
+      "year": null,
+      "buildings": [
+        "観音堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h134",
+      "name": "桜井神社",
+      "prefectures": [
+        "大阪府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.4854068,
+      "lon": 135.5062146,
+      "note": "",
+      "sub": "拝殿",
+      "year": null,
+      "buildings": [
+        "拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h135",
+      "name": "慈眼院",
+      "prefectures": [
+        "大阪府"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5809803,
+      "lon": 135.47571,
+      "note": "",
+      "sub": "多宝塔",
+      "year": null,
+      "buildings": [
+        "多宝塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h136",
+      "name": "姫路城",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.8393313,
+      "lon": 134.69402,
+      "note": "",
+      "sub": "大天守、西小天守、乾小天守、東小天守、イの渡櫓、ロの渡櫓…",
+      "year": null,
+      "buildings": [
+        "大天守",
+        "西小天守",
+        "乾小天守",
+        "東小天守",
+        "イの渡櫓",
+        "ロの渡櫓",
+        "ハの渡櫓",
+        "ニの渡櫓"
+      ],
+      "wh_site": "姫路城",
+      "overlap": true
+    },
+    {
+      "id": "h137",
+      "name": "浄土寺",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.8641506,
+      "lon": 134.9614737,
+      "note": "",
+      "sub": "浄土堂（阿弥陀堂）",
+      "year": null,
+      "buildings": [
+        "浄土堂（阿弥陀堂）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h138",
+      "name": "一乗寺",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.8593654,
+      "lon": 134.8188752,
+      "note": "",
+      "sub": "三重塔",
+      "year": null,
+      "buildings": [
+        "三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h139",
+      "name": "鶴林寺",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.7521329,
+      "lon": 134.8328309,
+      "note": "",
+      "sub": "本堂、太子堂",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "太子堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h140",
+      "name": "朝光寺",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.932389,
+      "lon": 135.043833,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h141",
+      "name": "太山寺",
+      "prefectures": [
+        "兵庫県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6966282,
+      "lon": 135.0674382,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h142",
+      "name": "東大寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6882437,
+      "lon": 135.8397568,
+      "note": "",
+      "sub": "南大門、法華堂、金堂（大仏殿）、転害門、鐘楼、開山堂…",
+      "year": null,
+      "buildings": [
+        "南大門",
+        "法華堂",
+        "金堂（大仏殿）",
+        "転害門",
+        "鐘楼",
+        "開山堂",
+        "本坊経庫",
+        "二月堂"
+      ],
+      "wh_site": "古都奈良の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h143",
+      "name": "海竜王寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6926091,
+      "lon": 135.8055722,
+      "note": "",
+      "sub": "五重小塔",
+      "year": null,
+      "buildings": [
+        "五重小塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h144",
+      "name": "薬師寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6685633,
+      "lon": 135.7845628,
+      "note": "",
+      "sub": "東塔、東院堂",
+      "year": null,
+      "buildings": [
+        "東塔",
+        "東院堂"
+      ],
+      "wh_site": "古都奈良の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h145",
+      "name": "唐招提寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6757374,
+      "lon": 135.7853483,
+      "note": "",
+      "sub": "金堂、講堂、鼓楼、経蔵、宝蔵",
+      "year": null,
+      "buildings": [
+        "金堂",
+        "講堂",
+        "鼓楼",
+        "経蔵",
+        "宝蔵"
+      ],
+      "wh_site": "古都奈良の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h146",
+      "name": "法隆寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.614013,
+      "lon": 135.7360432,
+      "note": "",
+      "sub": "金堂、五重塔、中門、廻廊、鐘楼、経蔵…",
+      "year": null,
+      "buildings": [
+        "金堂",
+        "五重塔",
+        "中門",
+        "廻廊",
+        "鐘楼",
+        "経蔵",
+        "大講堂",
+        "東院夢殿",
+        "東院伝法堂",
+        "東院鐘楼",
+        "南大門",
+        "聖霊院",
+        "東大門",
+        "食堂及び細殿",
+        "西円堂",
+        "三経院及び西室",
+        "東室",
+        "綱封蔵"
+      ],
+      "wh_site": "法隆寺地域の仏教建造物",
+      "overlap": true
+    },
+    {
+      "id": "h147",
+      "name": "法起寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6226185,
+      "lon": 135.7460297,
+      "note": "",
+      "sub": "三重塔",
+      "year": null,
+      "buildings": [
+        "三重塔"
+      ],
+      "wh_site": "法隆寺地域の仏教建造物",
+      "overlap": true
+    },
+    {
+      "id": "h148",
+      "name": "室生寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5379679,
+      "lon": 136.0406198,
+      "note": "",
+      "sub": "五重塔、金堂、本堂（灌頂堂）",
+      "year": null,
+      "buildings": [
+        "五重塔",
+        "金堂",
+        "本堂（灌頂堂）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h149",
+      "name": "興福寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6829744,
+      "lon": 135.8318653,
+      "note": "",
+      "sub": "北円堂、三重塔、五重塔、東金堂",
+      "year": null,
+      "buildings": [
+        "北円堂",
+        "三重塔",
+        "五重塔",
+        "東金堂"
+      ],
+      "wh_site": "古都奈良の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h150",
+      "name": "元興寺極楽坊",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6776317,
+      "lon": 135.8313186,
+      "note": "",
+      "sub": "五重小塔、禅室、本堂",
+      "year": null,
+      "buildings": [
+        "五重小塔",
+        "禅室",
+        "本堂"
+      ],
+      "wh_site": "古都奈良の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h151",
+      "name": "當麻寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5159748,
+      "lon": 135.6948376,
+      "note": "",
+      "sub": "東塔、西塔、本堂（曼荼羅堂）",
+      "year": null,
+      "buildings": [
+        "東塔",
+        "西塔",
+        "本堂（曼荼羅堂）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h152",
+      "name": "榮山寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.3559366,
+      "lon": 135.7208895,
+      "note": "",
+      "sub": "八角堂",
+      "year": null,
+      "buildings": [
+        "八角堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h153",
+      "name": "新薬師寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6758559,
+      "lon": 135.8458849,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h154",
+      "name": "般若寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.7001909,
+      "lon": 135.8361579,
+      "note": "",
+      "sub": "楼門",
+      "year": null,
+      "buildings": [
+        "楼門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h155",
+      "name": "圓成寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5707015,
+      "lon": 135.8423316,
+      "note": "",
+      "sub": "春日堂及び白山堂",
+      "year": null,
+      "buildings": [
+        "春日堂及び白山堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h156",
+      "name": "長弓寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.7185634,
+      "lon": 135.7273021,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h157",
+      "name": "霊山寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6741025,
+      "lon": 135.7437426,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h158",
+      "name": "金峯山寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.3683328,
+      "lon": 135.8588339,
+      "note": "",
+      "sub": "本堂、二王門",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "二王門"
+      ],
+      "wh_site": "紀伊山地の霊場と参詣道",
+      "overlap": true
+    },
+    {
+      "id": "h159",
+      "name": "石上神宮",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5976962,
+      "lon": 135.851874,
+      "note": "",
+      "sub": "拝殿、摂社出雲建雄神社拝殿",
+      "year": null,
+      "buildings": [
+        "拝殿",
+        "摂社出雲建雄神社拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h160",
+      "name": "宇太水分神社",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5234621,
+      "lon": 135.9530291,
+      "note": "",
+      "sub": "本殿第一殿、本殿第二殿、本殿第三殿",
+      "year": null,
+      "buildings": [
+        "本殿第一殿",
+        "本殿第二殿",
+        "本殿第三殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h161",
+      "name": "秋篠寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.7036327,
+      "lon": 135.7760159,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h162",
+      "name": "春日大社",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.6805063,
+      "lon": 135.8460746,
+      "note": "",
+      "sub": "本社本殿第一殿、本社本殿第二殿、本社本殿第三殿、本社本殿第四殿",
+      "year": null,
+      "buildings": [
+        "本社本殿第一殿",
+        "本社本殿第二殿",
+        "本社本殿第三殿",
+        "本社本殿第四殿"
+      ],
+      "wh_site": "古都奈良の文化財",
+      "overlap": true
+    },
+    {
+      "id": "h163",
+      "name": "正倉院",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6912636,
+      "lon": 135.8382023,
+      "note": "",
+      "sub": "正倉",
+      "year": null,
+      "buildings": [
+        "正倉"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h164",
+      "name": "長谷寺",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.5350901,
+      "lon": 135.9067332,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h165",
+      "name": "十輪院",
+      "prefectures": [
+        "奈良県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6763419,
+      "lon": 135.8332388,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h166",
+      "name": "金剛峯寺",
+      "prefectures": [
+        "和歌山県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.2138822,
+      "lon": 135.5836872,
+      "note": "",
+      "sub": "不動堂",
+      "year": null,
+      "buildings": [
+        "不動堂"
+      ],
+      "wh_site": "紀伊山地の霊場と参詣道",
+      "overlap": true
+    },
+    {
+      "id": "h167",
+      "name": "金剛三昧院",
+      "prefectures": [
+        "和歌山県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.2101236,
+      "lon": 135.5869835,
+      "note": "",
+      "sub": "多宝塔",
+      "year": null,
+      "buildings": [
+        "多宝塔"
+      ],
+      "wh_site": "紀伊山地の霊場と参詣道",
+      "overlap": true
+    },
+    {
+      "id": "h168",
+      "name": "長保寺",
+      "prefectures": [
+        "和歌山県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.1084234,
+      "lon": 135.1655519,
+      "note": "",
+      "sub": "本堂、多宝塔、大門",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "多宝塔",
+        "大門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h169",
+      "name": "善福院",
+      "prefectures": [
+        "和歌山県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.1304938,
+      "lon": 135.1772083,
+      "note": "",
+      "sub": "釈迦堂",
+      "year": null,
+      "buildings": [
+        "釈迦堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h170",
+      "name": "三仏寺（三徳山三佛寺）",
+      "prefectures": [
+        "鳥取県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 36.1667885,
+      "lon": 139.1230973,
+      "note": "",
+      "sub": "投入堂（奥院）",
+      "year": null,
+      "buildings": [
+        "投入堂（奥院）"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h171",
+      "name": "神魂神社",
+      "prefectures": [
+        "島根県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.4255927,
+      "lon": 133.0843719,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h172",
+      "name": "出雲大社",
+      "prefectures": [
+        "島根県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.399803,
+      "lon": 132.6851508,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h173",
+      "name": "松江城",
+      "prefectures": [
+        "島根県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 35.4751405,
+      "lon": 133.0507625,
+      "note": "",
+      "sub": "天守",
+      "year": null,
+      "buildings": [
+        "天守"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h174",
+      "name": "吉備津神社",
+      "prefectures": [
+        "岡山県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.6706821,
+      "lon": 133.8506113,
+      "note": "",
+      "sub": "本殿及び拝殿",
+      "year": null,
+      "buildings": [
+        "本殿及び拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h175",
+      "name": "旧閑谷学校",
+      "prefectures": [
+        "岡山県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.7935457,
+      "lon": 134.2195831,
+      "note": "",
+      "sub": "講堂",
+      "year": null,
+      "buildings": [
+        "講堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h176",
+      "name": "厳島神社",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 34.2965418,
+      "lon": 132.3190077,
+      "note": "",
+      "sub": "本社本殿・幣殿・拝殿・祓殿、摂社客神社本殿・幣殿・拝殿・祓殿、廻廊（東）、廻廊（西）",
+      "year": null,
+      "buildings": [
+        "本社本殿・幣殿・拝殿・祓殿",
+        "摂社客神社本殿・幣殿・拝殿・祓殿",
+        "廻廊（東）",
+        "廻廊（西）"
+      ],
+      "wh_site": "厳島神社",
+      "overlap": true
+    },
+    {
+      "id": "h177",
+      "name": "浄土寺",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.3039185,
+      "lon": 133.171708,
+      "note": "",
+      "sub": "本堂、多宝塔",
+      "year": null,
+      "buildings": [
+        "本堂",
+        "多宝塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h178",
+      "name": "明王院",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.4783923,
+      "lon": 133.3463283,
+      "note": "",
+      "sub": "五重塔、本堂",
+      "year": null,
+      "buildings": [
+        "五重塔",
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h179",
+      "name": "不動院",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.4270315,
+      "lon": 132.4711145,
+      "note": "",
+      "sub": "金堂",
+      "year": null,
+      "buildings": [
+        "金堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h180",
+      "name": "向上寺",
+      "prefectures": [
+        "広島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.3064786,
+      "lon": 133.086753,
+      "note": "",
+      "sub": "三重塔",
+      "year": null,
+      "buildings": [
+        "三重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h181",
+      "name": "瑠璃光寺",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.1898401,
+      "lon": 131.4717766,
+      "note": "",
+      "sub": "五重塔",
+      "year": null,
+      "buildings": [
+        "五重塔"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h182",
+      "name": "功山寺",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.9960624,
+      "lon": 130.9819937,
+      "note": "",
+      "sub": "仏殿",
+      "year": null,
+      "buildings": [
+        "仏殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h183",
+      "name": "住吉神社",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.9997829,
+      "lon": 130.9568677,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h184",
+      "name": "神谷神社",
+      "prefectures": [
+        "香川県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.3248323,
+      "lon": 133.9166307,
+      "note": "",
+      "sub": "本殿",
+      "year": null,
+      "buildings": [
+        "本殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h185",
+      "name": "本山寺",
+      "prefectures": [
+        "香川県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 34.1396065,
+      "lon": 133.6937985,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h186",
+      "name": "石手寺",
+      "prefectures": [
+        "愛媛県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.8467695,
+      "lon": 132.7963926,
+      "note": "",
+      "sub": "二王門",
+      "year": null,
+      "buildings": [
+        "二王門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h187",
+      "name": "大宝寺",
+      "prefectures": [
+        "愛媛県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.8416967,
+      "lon": 132.7422182,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h188",
+      "name": "太山寺",
+      "prefectures": [
+        "愛媛県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.8839201,
+      "lon": 132.7203772,
+      "note": "",
+      "sub": "本堂",
+      "year": null,
+      "buildings": [
+        "本堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h189",
+      "name": "豊楽寺",
+      "prefectures": [
+        "高知県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.792083,
+      "lon": 133.727111,
+      "note": "",
+      "sub": "薬師堂",
+      "year": null,
+      "buildings": [
+        "薬師堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h190",
+      "name": "崇福寺",
+      "prefectures": [
+        "長崎県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 32.7424935,
+      "lon": 129.8833921,
+      "note": "",
+      "sub": "大雄宝殿、第一峰門",
+      "year": null,
+      "buildings": [
+        "大雄宝殿",
+        "第一峰門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h191",
+      "name": "大浦天主堂",
+      "prefectures": [
+        "長崎県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 32.734189,
+      "lon": 129.8701625,
+      "note": "",
+      "sub": "大浦天主堂",
+      "year": null,
+      "buildings": [
+        "大浦天主堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h192",
+      "name": "青井阿蘇神社",
+      "prefectures": [
+        "熊本県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 32.2133126,
+      "lon": 130.753098,
+      "note": "",
+      "sub": "本殿、廊、幣殿、拝殿、楼門",
+      "year": null,
+      "buildings": [
+        "本殿",
+        "廊",
+        "幣殿",
+        "拝殿",
+        "楼門"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h193",
+      "name": "通潤橋",
+      "prefectures": [
+        "熊本県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 32.6814972,
+      "lon": 130.9938935,
+      "note": "",
+      "sub": "通潤橋",
+      "year": null,
+      "buildings": [
+        "通潤橋"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h194",
+      "name": "富貴寺",
+      "prefectures": [
+        "大分県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.5379125,
+      "lon": 131.528481,
+      "note": "",
+      "sub": "大堂",
+      "year": null,
+      "buildings": [
+        "大堂"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h195",
+      "name": "宇佐神宮",
+      "prefectures": [
+        "大分県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 33.5254329,
+      "lon": 131.3751992,
+      "note": "",
+      "sub": "本殿第一殿、本殿第二殿、本殿第三殿",
+      "year": null,
+      "buildings": [
+        "本殿第一殿",
+        "本殿第二殿",
+        "本殿第三殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h196",
+      "name": "霧島神宮",
+      "prefectures": [
+        "鹿児島県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 1,
+      "lat": 31.8583681,
+      "lon": 130.8711265,
+      "note": "",
+      "sub": "本殿、幣殿及び拝殿",
+      "year": null,
+      "buildings": [
+        "本殿、幣殿及び拝殿"
+      ],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h197",
+      "name": "玉陵",
+      "prefectures": [
+        "沖縄県"
+      ],
+      "category": "文化遺産",
+      "tier": "national_treasure",
+      "point": 0,
+      "lat": 26.2181266,
+      "lon": 127.714654,
+      "note": "",
+      "sub": "墓室（東室・中室・西室）、石牆",
+      "year": null,
+      "buildings": [
+        "墓室（東室・中室・西室）",
+        "石牆"
+      ],
+      "wh_site": "琉球王国のグスク及び関連遺産群",
+      "overlap": true
+    }
+  ]
+}

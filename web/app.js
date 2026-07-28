@@ -1,15 +1,15 @@
-// コメリ 全店舗マップ — Leaflet + OpenStreetMap
-const DATA_URL = "data/all_stores.json";
+// 日本の世界遺産・国宝建造物マップ — Leaflet + OpenStreetMap
+const DATA_URL = "data/heritage.json";
 
-// brand -> {color, label}
-const BRANDS = {
-  "コメリ":                  { color: "#00873c", label: "コメリ" },
-  "コメリPRO":               { color: "#1f6feb", label: "コメリPRO" },
-  "コメリパワー":            { color: "#e8590c", label: "コメリパワー" },
-  "コメリハード＆グリーン":   { color: "#7048e8", label: "コメリH&G" },
-  "コメリリフォーム":        { color: "#e64980", label: "コメリリフォーム" },
-  "その他":                  { color: "#868e96", label: "その他" },
+// tier -> {color, label, point} （heritage.json の tiers で上書きされる想成だがフォールバックも用意）
+const TIERS = {
+  "world":              { color: "#e0a816", label: "世界遺産",        point: 3 },
+  "tentative_official": { color: "#7d8da1", label: "公式暫定リスト",  point: 2 },
+  "tentative":          { color: "#b9c0c9", label: "暫定リスト候補",  point: 2 },
+  "national_treasure":  { color: "#b87333", label: "国宝建造物",      point: 1 },
 };
+const TIER_ORDER = ["world", "tentative_official", "tentative", "national_treasure"];
+const CATEGORIES = ["文化遺産", "自然遺産", "混合遺産"];
 
 const map = L.map("map").setView([36.2, 138.2], 5);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -22,16 +22,13 @@ const clusters = L.markerClusterGroup({
   maxClusterRadius: 55,
   iconCreateFunction(c) {
     return L.divIcon({
-      html: `<div class="komeri-cluster"><span>${c.getChildCount()}</span></div>`,
-      className: "komeri-cluster-wrap", iconSize: [40, 40],
+      html: `<div class="heritage-cluster"><span>${c.getChildCount()}</span></div>`,
+      className: "heritage-cluster-wrap", iconSize: [40, 40],
     });
   },
 });
 map.addLayer(clusters);
 
-// モバイルではCSSの dvh 反映やアドレスバーの表示/非表示でコンテナサイズが
-// 初期化直後と食い違い、タイルが空白のまま描画されないことがあるため、
-// リサイズ・向き変更・初回ロード完了時に地図の内部サイズ計算をやり直す。
 function refreshMapSize() { map.invalidateSize(); }
 window.addEventListener("resize", refreshMapSize);
 window.addEventListener("orientationchange", () => setTimeout(refreshMapSize, 200));
@@ -42,18 +39,18 @@ const listEl = document.getElementById("list");
 const countEl = document.getElementById("count");
 const searchEl = document.getElementById("search");
 const prefEl = document.getElementById("prefFilter");
-const onlyMappedEl = document.getElementById("onlyMapped");
-const brandField = document.getElementById("brandFilter");
+const tierField = document.getElementById("tierFilter");
+const catField = document.getElementById("catFilter");
 
-let STORES = [];
+let ITEMS = [];
 const markersById = new Map();
 let activeId = null;
-let activeBrands = new Set(Object.keys(BRANDS));
+let activeTiers = new Set(TIER_ORDER);
+let activeCats = new Set(CATEGORIES);
 
-// cluster + pin styles
 const styleTag = document.createElement("style");
 styleTag.textContent = `
-.komeri-cluster { width:40px;height:40px;border-radius:50%;background:#00873c;color:#fff;
+.heritage-cluster { width:40px;height:40px;border-radius:50%;background:#b8860b;color:#fff;
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
   box-shadow:0 1px 4px rgba(0,0,0,.4);border:2px solid #fff; }`;
 document.head.appendChild(styleTag);
@@ -62,12 +59,11 @@ function esc(t) {
   return String(t ?? "").replace(/[&<>"']/g, c => (
     { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
-
-function brandInfo(b) { return BRANDS[b] || BRANDS["その他"]; }
+function tierInfo(t) { return TIERS[t] || { color: "#888", label: t, point: 0 }; }
 
 function pinIcon(color) {
   return L.divIcon({
-    className: "komeri-pin",
+    className: "heritage-pin",
     html: `<svg width="26" height="34" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
       <path d="M14 0C6.3 0 0 6.3 0 14c0 10 14 22 14 22s14-12 14-22C28 6.3 21.7 0 14 0z" fill="${color}" stroke="#fff" stroke-width="1.5"/>
       <circle cx="14" cy="14" r="5.5" fill="#fff"/></svg>`,
@@ -75,45 +71,58 @@ function pinIcon(color) {
   });
 }
 
-function telDisp(t) {
-  if (!t) return "";
-  const d = t.replace(/\D/g, "");
-  if (d.length >= 10) return d.replace(/(\d{2,4})(\d{2,4})(\d{3,4})/, "$1-$2-$3");
-  return t;
+function popupHtml(it) {
+  const ti = tierInfo(it.tier);
+  const hasLL = it.lat != null && it.lon != null;
+  const dir = hasLL ? `https://www.google.com/maps/dir/?api=1&destination=${it.lat},${it.lon}` : "#";
+  const sv = hasLL ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${it.lat},${it.lon}` : "#";
+  const gsearch = `https://www.google.com/search?q=${encodeURIComponent(it.name)}`;
+  const yearStr = it.year ? `${it.year}年登録` : "";
+  const catStr = it.category || "";
+  const headExtra = [catStr, yearStr].filter(Boolean).join("・");
+  const bld = it.buildings && it.buildings.length
+    ? `<p class="pnote">国宝建造物: ${esc(it.buildings.join("、"))}</p>` : "";
+  const note = it.note ? `<p class="pnote">${esc(it.note)}</p>` : "";
+  const sub = it.sub && !it.buildings.length ? `<p class="pnote">${esc(it.sub)}</p>` : "";
+  return `
+    <p class="pname"><span class="ptag" style="background:${ti.color}">${esc(ti.label)}</span> ${esc(it.name)}</p>
+    ${headExtra ? `<p class="pcat">${esc(headExtra)}</p>` : ""}
+    <p class="paddr">${esc(it.prefectures.join("・"))}</p>
+    ${bld}${note}${sub}
+    <div class="plinks">
+      <a class="lk s" href="${esc(gsearch)}" target="_blank" rel="noopener">調べる</a>
+      ${hasLL ? `<a class="lk g" href="${dir}" target="_blank" rel="noopener">経路</a>` : ""}
+      ${hasLL ? `<a class="lk g" href="${sv}" target="_blank" rel="noopener">ストビュー</a>` : ""}
+    </div>`;
 }
 
-function popupHtml(s) {
-  const bi = brandInfo(s.brand);
-  const hasLL = s.lat != null && s.lon != null;
-  const dir = hasLL ? `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}` : "#";
-  const sv = hasLL ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.lat},${s.lon}` : "#";
-  return `
-    <p class="pname"><span class="ptag" style="background:${bi.color}">${esc(bi.label)}</span> ${esc(s.name)}</p>
-    <p class="paddr">${esc(s.address)}</p>
-    ${s.tel ? `<p class="ptel">☎ <a href="tel:${esc(s.tel)}">${telDisp(s.tel)}</a></p>` : ""}
-    <div class="plinks">
-      <a class="lk" href="${esc(s.url)}" target="_blank" rel="noopener">店舗詳細</a>
-      ${hasLL ? `<a class="lk g" href="${dir}" target="_blank" rel="noopener">経路</a>` : ""}
-      ${hasLL ? `<a class="lk g" href="${sv}" target="_blank" rel="noopener">ストリートビュー</a>` : ""}
-    </div>`;
+function passesFilter(it) {
+  if (!activeTiers.has(it.tier)) return false;
+  if (!activeCats.has(it.category)) return false;
+  const q = searchEl.value.trim().toLowerCase();
+  if (q && !(it.name + " " + it.prefectures.join(" ") + " " + (it.note || "")).toLowerCase().includes(q)) return false;
+  const pref = prefEl.value;
+  if (pref && !it.prefectures.includes(pref)) return false;
+  return true;
 }
 
 function buildMarkers() {
   clusters.clearLayers();
   markersById.clear();
-  STORES.forEach(s => {
-    if (s.lat == null || s.lon == null) return;
-    const m = L.marker([s.lat, s.lon], { icon: pinIcon(brandInfo(s.brand).color), title: s.name });
-    m.bindPopup(popupHtml(s), { maxWidth: 280 });
-    m.on("click", () => setActive(s.id, false));
-    m.storeId = s.id;
+  ITEMS.forEach(it => {
+    if (it.lat == null || it.lon == null) return;
+    if (!passesFilter(it)) return;
+    const m = L.marker([it.lat, it.lon], { icon: pinIcon(tierInfo(it.tier).color), title: it.name });
+    m.bindPopup(popupHtml(it), { maxWidth: 280 });
+    m.on("click", () => setActive(it.id, false));
+    m.itemId = it.id;
     clusters.addLayer(m);
-    markersById.set(s.id, m);
+    markersById.set(it.id, m);
   });
 }
 
 function buildPrefFilter() {
-  const prefs = [...new Set(STORES.map(s => s.prefecture).filter(Boolean))].sort();
+  const prefs = [...new Set(ITEMS.flatMap(it => it.prefectures).filter(Boolean))].sort();
   prefs.forEach(p => {
     const o = document.createElement("option");
     o.value = p; o.textContent = p;
@@ -121,83 +130,71 @@ function buildPrefFilter() {
   });
 }
 
-function buildBrandFilter() {
+function buildTierFilter() {
   const counts = {};
-  STORES.forEach(s => { counts[s.brand] = (counts[s.brand] || 0) + 1; });
-  Object.keys(BRANDS).forEach(b => {
-    if (b === "その他" && !counts[b]) return;
-    const id = "bf_" + b.replace(/[^a-zA-Z]/g, "");
+  ITEMS.forEach(it => { counts[it.tier] = (counts[it.tier] || 0) + 1; });
+  TIER_ORDER.forEach(t => {
+    const id = "tf_" + t;
     const lbl = document.createElement("label");
     lbl.className = "brand-chip";
-    const bi = BRANDS[b];
-    lbl.innerHTML = `<input type="checkbox" data-brand="${esc(b)}" checked />
-      <span class="dot" style="background:${bi.color}"></span>${esc(bi.label)}
-      <em>${counts[b] || 0}</em>`;
-    brandField.appendChild(lbl);
+    const ti = tierInfo(t);
+    lbl.innerHTML = `<input type="checkbox" data-tier="${esc(t)}" checked />
+      <span class="dot" style="background:${ti.color}"></span>${esc(ti.label)}
+      <em>${counts[t] || 0}</em>`;
+    tierField.appendChild(lbl);
   });
-  brandField.querySelectorAll("input[type=checkbox]").forEach(cb =>
+  tierField.querySelectorAll("input[type=checkbox]").forEach(cb =>
     cb.addEventListener("change", () => {
-      activeBrands = new Set(
-        [...brandField.querySelectorAll("input:checked")].map(c => c.dataset.brand));
-      renderList();
-      applyMarkerVisibility();
+      activeTiers = new Set([...tierField.querySelectorAll("input:checked")].map(c => c.dataset.tier));
+      renderList(); buildMarkers();
     }));
 }
 
-function applyMarkerVisibility() {
-  const q = searchEl.value.trim().toLowerCase();
-  const pref = prefEl.value;
-  const onlyMapped = onlyMappedEl.checked;
-  clusters.clearLayers();
-  markersById.clear();
-  STORES.forEach(s => {
-    if (s.lat == null) return;
-    if (!activeBrands.has(s.brand)) return;
-    if (pref && s.prefecture !== pref) return;
-    if (q && !(s.name + " " + s.address + " " + s.prefecture).toLowerCase().includes(q)) return;
-    const m = L.marker([s.lat, s.lon], { icon: pinIcon(brandInfo(s.brand).color), title: s.name });
-    m.bindPopup(popupHtml(s), { maxWidth: 280 });
-    m.on("click", () => setActive(s.id, false));
-    m.storeId = s.id;
-    clusters.addLayer(m);
-    markersById.set(s.id, m);
+function buildCatFilter() {
+  const counts = {};
+  ITEMS.forEach(it => { counts[it.category] = (counts[it.category] || 0) + 1; });
+  CATEGORIES.forEach(c => {
+    const lbl = document.createElement("label");
+    lbl.className = "brand-chip";
+    lbl.innerHTML = `<input type="checkbox" data-cat="${esc(c)}" checked />
+      <span class="dot" style="background:#444"></span>${esc(c)}
+      <em>${counts[c] || 0}</em>`;
+    catField.appendChild(lbl);
   });
+  catField.querySelectorAll("input[type=checkbox]").forEach(cb =>
+    cb.addEventListener("change", () => {
+      activeCats = new Set([...catField.querySelectorAll("input:checked")].map(c => c.dataset.cat));
+      renderList(); buildMarkers();
+    }));
 }
 
 function renderList() {
-  const q = searchEl.value.trim().toLowerCase();
-  const pref = prefEl.value;
-  const onlyMapped = onlyMappedEl.checked;
-  const filtered = STORES.filter(s => {
-    if (onlyMapped && s.lat == null) return false;
-    if (!activeBrands.has(s.brand)) return false;
-    if (pref && s.prefecture !== pref) return false;
-    if (q && !(s.name + " " + s.address + " " + s.prefecture).toLowerCase().includes(q)) return false;
-    return true;
-  });
+  const filtered = ITEMS.filter(passesFilter);
   listEl.innerHTML = "";
   const frag = document.createDocumentFragment();
-  filtered.forEach(s => {
+  filtered.forEach(it => {
     const li = document.createElement("li");
-    const bi = brandInfo(s.brand);
-    li.className = (s.lat != null ? "has-coord" : "") + (s.id === activeId ? " active" : "");
-    li.dataset.id = s.id;
+    const ti = tierInfo(it.tier);
+    li.className = (it.lat != null ? "has-coord " : "") + (it.id === activeId ? "active" : "");
+    li.dataset.id = it.id;
+    const meta = [it.category, it.prefectures.join("・"), it.year ? it.year + "年" : ""]
+      .filter(Boolean).join("・");
     li.innerHTML = `
-      <span class="name"><span class="dot" style="background:${bi.color}"></span>${esc(s.name)}</span>
-      <span class="addr">${esc(s.address) || esc(s.prefecture)}</span>
-      ${s.lat == null ? '<span class="badge">座標未取得</span>' : ''}`;
-    li.addEventListener("click", () => setActive(s.id, true));
+      <span class="name"><span class="dot" style="background:${ti.color}"></span>${esc(it.name)}</span>
+      <span class="meta">${esc(meta)}</span>
+      ${it.lat == null ? '<span class="badge">座標未取得</span>' : ''}`;
+    li.addEventListener("click", () => setActive(it.id, true));
     frag.appendChild(li);
   });
   if (!filtered.length) {
     const li = document.createElement("li");
     li.style.cursor = "default";
-    li.innerHTML = `<span class="addr">該当する店舗がありません</span>`;
+    li.innerHTML = `<span class="meta">該当する物件がありません</span>`;
     frag.appendChild(li);
   }
   listEl.appendChild(frag);
-  const withCoord = STORES.filter(s => s.lat != null).length;
-  countEl.textContent = `${STORES.length}店舗中 ${withCoord}店舗を地図表示 ／ リスト ${filtered.length}件`;
+  const withCoord = ITEMS.filter(it => it.lat != null).length;
+  countEl.textContent = `${ITEMS.length}件中 ${withCoord}件を地図表示 ／ リスト ${filtered.length}件`;
 }
 
 function setActive(id, fly) {
@@ -212,33 +209,7 @@ function setActive(id, fly) {
   } else if (m) m.openPopup();
 }
 
-fetch(DATA_URL)
-  .then(r => r.json())
-  .then(data => {
-    STORES = data;
-    buildMarkers();
-    buildPrefFilter();
-    buildBrandFilter();
-    renderList();
-    return fetch("data/population.json").then(r => r.json());
-  })
-  .then(popData => {
-    POP = popData.population || popData;
-    POP_YEAR = popData.year || "";
-    renderRanking();
-  })
-  .catch(err => {
-    countEl.textContent = "データの読み込みに失敗しました（all_stores.json）";
-    console.error(err);
-  });
-
-let t;
-searchEl.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { renderList(); applyMarkerVisibility(); }, 120); });
-prefEl.addEventListener("change", () => { renderList(); applyMarkerVisibility(); });
-onlyMappedEl.addEventListener("change", () => { renderList(); applyMarkerVisibility(); });
-
-/* ===== Ranking view (deviation value per capita) ===== */
-let POP = null, POP_YEAR = "";
+/* ===== Ranking (per-prefecture points) ===== */
 const PREF_ORDER = [
   "北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
   "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
@@ -252,68 +223,59 @@ const PREF_ORDER = [
 
 function computeRanking() {
   const sc = {};
-  STORES.forEach(s => { sc[s.prefecture] = (sc[s.prefecture] || 0) + 1; });
-  const rows = (POP ? PREF_ORDER : Object.keys(sc)).map(p => {
-    const n = sc[p] || 0;
-    const ppl = POP ? (POP[p] || 0) : 0;
-    const per100k = ppl ? n / ppl * 100000 : 0;
-    return { pref: p, stores: n, pop: ppl, per100k };
+  PREF_ORDER.forEach(p => { sc[p] = { pref: p, point: 0, world: 0, tentative: 0, national: 0, count: 0 }; });
+  ITEMS.forEach(it => {
+    if (it.point <= 0) return; // overlap は上位がAlready加点済み → 加算しない
+    it.prefectures.forEach(p => {
+      if (!sc[p]) sc[p] = { pref: p, point: 0, world: 0, tentative: 0, national: 0, count: 0 };
+      const r = sc[p];
+      r.point += it.point;
+      r.count += 1;
+      if (it.tier === "world") r.world += 1;
+      else if (it.tier === "tentative" || it.tier === "tentative_official") r.tentative += 1;
+      else if (it.tier === "national_treasure") r.national += 1;
+    });
   });
-  const xs = rows.map(r => r.per100k);
-  const mean = xs.reduce((a, b) => a + b, 0) / xs.length;
-  const variance = xs.reduce((a, b) => a + (b - mean) ** 2, 0) / xs.length;
-  const std = Math.sqrt(variance);
-  rows.forEach(r => { r.dev = std ? 50 + 10 * (r.per100k - mean) / std : 50; });
-  return { rows, mean, std };
+  return Object.values(sc);
 }
 
-function devColor(dev) {
-  // map dev (~38..75) to a green intensity
-  if (dev >= 65) return "#00873c";
-  if (dev >= 58) return "#2e9b44";
-  if (dev >= 52) return "#6bb16a";
-  if (dev >= 48) return "#b0c4a8";
-  return "#cfd6cb";
-}
-
-function fmt(n) { return n.toLocaleString("ja-JP"); }
-
-let rankSort = "dev";
-
+let rankSort = "point";
 function renderRanking() {
-  if (!POP) return;
-  const { rows, mean, std } = computeRanking();
-  rows.sort((a, b) => rankSort === "stores" ? b.stores - a.stores : b.dev - a.dev);
+  const rows = computeRanking();
+  rows.sort((a, b) => {
+    if (rankSort === "world") return b.world - a.world || b.point - a.point;
+    if (rankSort === "count") return b.count - a.count || b.point - a.point;
+    return b.point - a.point || b.world - a.world || b.count - a.count;
+  });
   rows.forEach((r, i) => { r.rank = i + 1; });
   const tb = document.querySelector("#rankingTable tbody");
   tb.innerHTML = "";
   const frag = document.createDocumentFragment();
-  const maxDev = Math.max(...rows.map(r => r.dev));
-  const minDev = Math.min(...rows.map(r => r.dev));
+  const maxPt = Math.max(...rows.map(r => r.point));
   rows.forEach(r => {
     const tr = document.createElement("tr");
     tr.dataset.pref = r.pref;
     const medal = r.rank === 1 ? "🥇" : r.rank === 2 ? "🥈" : r.rank === 3 ? "🥉" : r.rank;
-    const barW = ((r.dev - minDev) / (maxDev - minDev) * 100).toFixed(1);
-    const col = devColor(r.dev);
+    const barW = maxPt ? (r.point / maxPt * 100).toFixed(1) : 0;
+    const z = (n) => n ? n : `<span class="zero">0</span>`;
     tr.innerHTML = `
       <td class="r">${medal}</td>
-      <td class="dev">
-        <div class="devbar"><span style="width:${barW}%;background:${col}"></span></div>
-        <b style="color:${col === '#cfd6cb' ? '#6b756c' : col}">${r.dev.toFixed(1)}</b>
+      <td class="pt">
+        <div class="devbar"><span style="width:${barW}%;background:#b8860b"></span></div>
+        <b>${r.point}</b>
       </td>
       <td class="pref">${esc(r.pref)}</td>
-      <td class="n">${r.stores}</td>
-      <td class="pop">${fmt(r.pop)}</td>
-      <td class="per">${r.per100k.toFixed(2)}</td>`;
+      <td class="n">${r.world ? r.world : '<span class="zero">0</span>'}</td>
+      <td class="n">${z(r.tentative)}</td>
+      <td class="n">${z(r.national)}</td>
+      <td class="n">${r.count}</td>`;
     tr.addEventListener("click", () => {
       prefEl.value = r.pref;
-      // clear brand/text filters for a clean prefecture view
       searchEl.value = "";
-      renderList(); applyMarkerVisibility();
+      // この都道府県の tier/cat フィルタは維持したままリスト表示
+      renderList(); buildMarkers();
       switchView("map");
-      // focus map on the prefecture's markers
-      const ms = STORES.filter(s => s.prefecture === r.pref && s.lat != null);
+      const ms = ITEMS.filter(it => it.prefectures.includes(r.pref) && it.lat != null && passesFilter(it));
       if (ms.length) {
         const lats = ms.map(s => s.lat), lons = ms.map(s => s.lon);
         map.fitBounds([[Math.min(...lats), Math.min(...lons)], [Math.max(...lats), Math.max(...lons)]], { padding: [40, 40] });
@@ -323,12 +285,9 @@ function renderRanking() {
   });
   tb.appendChild(frag);
   const top = rows[0];
-  const lead = rankSort === "stores"
-    ? `最多 <b style="color:${devColor(top.dev)}">${top.pref}</b>（${top.stores}店／${fmt(top.pop)}人／偏差値${top.dev.toFixed(1)}）`
-    : `最高 <b style="color:${devColor(top.dev)}">${top.pref} 偏差値${top.dev.toFixed(1)}</b>（${top.stores}店／${fmt(top.pop)}人／${top.per100k.toFixed(2)}店/10万人）`;
+  const total = rows.reduce((a, b) => a + b.point, 0);
   document.getElementById("rankingSummary").innerHTML =
-    `全国平均 <b>${mean.toFixed(2)}</b> 店/10万人（標準偏差 ${std.toFixed(2)}） ／ ${lead}` +
-    (POP_YEAR ? ` ／ 人口: ${POP_YEAR}年推計` : "");
+    `全国合計 <b>${total}</b> pt ／ 1位 <b>${esc(top.pref)}</b>（${top.point} pt／世界遺産${top.world}・暫定${top.tentative}・国宝${top.national}）`;
 }
 
 /* tab switching */
@@ -342,24 +301,15 @@ function switchView(view) {
 document.querySelectorAll(".tab").forEach(b =>
   b.addEventListener("click", () => switchView(b.dataset.view)));
 
-/* mobile sidebar drawer (list <-> full-screen map) */
+/* mobile sidebar drawer */
 const sidebarEl = document.getElementById("sidebar");
 const sidebarOpenBtn = document.getElementById("sidebarOpen");
 const sidebarCloseBtn = document.getElementById("sidebarClose");
-
-function closeSidebarDrawer() {
-  sidebarEl.classList.add("closed");
-  setTimeout(refreshMapSize, 260); // wait for the CSS transform transition to finish
-}
-function openSidebarDrawer() {
-  sidebarEl.classList.remove("closed");
-}
+function closeSidebarDrawer() { sidebarEl.classList.add("closed"); setTimeout(refreshMapSize, 260); }
+function openSidebarDrawer() { sidebarEl.classList.remove("closed"); }
 sidebarOpenBtn && sidebarOpenBtn.addEventListener("click", openSidebarDrawer);
 sidebarCloseBtn && sidebarCloseBtn.addEventListener("click", closeSidebarDrawer);
-// start closed (map-first) on narrow screens
-if (window.matchMedia("(max-width: 720px)").matches) {
-  sidebarEl.classList.add("closed");
-}
+if (window.matchMedia("(max-width: 720px)").matches) { sidebarEl.classList.add("closed"); }
 
 document.querySelectorAll(".sortbtn").forEach(b =>
   b.addEventListener("click", () => {
@@ -367,3 +317,25 @@ document.querySelectorAll(".sortbtn").forEach(b =>
     document.querySelectorAll(".sortbtn").forEach(x => x.classList.toggle("active", x === b));
     renderRanking();
   }));
+
+/* load */
+fetch(DATA_URL)
+  .then(r => r.json())
+  .then(data => {
+    if (data.tiers) Object.assign(TIERS, data.tiers);
+    ITEMS = data.items || [];
+    buildMarkers();
+    buildPrefFilter();
+    buildTierFilter();
+    buildCatFilter();
+    renderList();
+    renderRanking();
+  })
+  .catch(err => {
+    countEl.textContent = "データの読み込みに失敗しました（heritage.json）";
+    console.error(err);
+  });
+
+let t;
+searchEl.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { renderList(); buildMarkers(); }, 120); });
+prefEl.addEventListener("change", () => { renderList(); buildMarkers(); });

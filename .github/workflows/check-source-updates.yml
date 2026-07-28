@@ -1,0 +1,40 @@
+name: Check heritage data sources for updates
+
+on:
+  schedule:
+    # 3ヶ月に1回、1/4/7/10月の1日 04:00 UTC (日本時間 13:00) に実行
+    - cron: "0 4 1 1,4,7,10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: "check-source-updates"
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check source pages for changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 crawl/check_source_updates.py
+
+      - name: Commit updated snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add crawl/source_snapshots crawl/source_hashes.json
+          if git diff --cached --quiet; then
+            echo "no snapshot changes to commit"
+          else
+            git commit -m "chore: update source page snapshots"
+            git push
+          fi

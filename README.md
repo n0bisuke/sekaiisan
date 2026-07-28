@@ -35,9 +35,14 @@
 │   └── data/
 │       └── heritage.json       # 遺産データ（ビルダが生成）
 ├── crawl/                      # データビルドスクリプト
-│   ├── build_heritage.py       # シード（世界遺産・暫定）+ 国宝JSON をマージし Nominatim で座標補完して heritage.json を生成
-│   └── national_treasures.json  # 国宝建造物リスト（facility単位、手元で作成）
-└── .github/workflows/update-deploy.yml   # push で Pages デプロイ
+│   ├── build_heritage.py           # シード（世界遺産・暫定）+ 国宝JSON をマージし Nominatim で座標補完して heritage.json を生成
+│   ├── national_treasures.json     # 国宝建造物リスト（facility単位、手元で作成）
+│   ├── check_source_updates.py     # 文化庁3ページの変更検知（→ GitHub Issue 作成）
+│   ├── source_snapshots/           # 各ページの前回スナップショット（差分表示用）
+│   └── source_hashes.json          # 各ページのハッシュ値
+└── .github/workflows/
+    ├── update-deploy.yml           # push で Pages デプロイ
+    └── check-source-updates.yml    # 3ヶ月ごとに情報源の変更をチェックし Issue 化
 ```
 
 ## 実行方法
@@ -65,6 +70,14 @@ python3 crawl/build_heritage.py    # web/data/heritage.json を生成
 - [文化庁 国宝建造物](https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html)
 - 座標: OpenStreetMap Nominatim
 - 地図: © OpenStreetMap contributors（[ODbL](https://www.openstreetmap.org/copyright)）
+
+## 情報源の更新チェック
+
+`.github/workflows/check-source-updates.yml` が3ヶ月ごと（1/4/7/10月の1日）に文化庁の3ページ（世界遺産一覧・暫定リスト記載候補・国宝建造物）の本文をチェックし、前回スナップショットとの差分があれば GitHub Issue（ラベル `data-source-update`）を作成・更新します。
+
+- データそのものは自動で書き換えません。世界遺産/暫定リストの区分や国宝建造物のfacility分類は文脈判断が必要なため、Issueを見て人（Claude Codeセッション含む）が `crawl/national_treasures.json` や `build_heritage.py` 内のシードを手動で更新し、`python3 crawl/build_heritage.py` を再実行してください。
+- 手動実行: `python3 crawl/check_source_updates.py --dry-run`（Issue作成・コミットはせず結果表示のみ）
+- ローカルで初回実行するとスナップショットが `crawl/source_snapshots/` に保存され、以後はそれとの差分で変更を検知します。
 
 ## GitHub Pages デプロイ
 

@@ -33,6 +33,11 @@ SOURCES = [
         "label": "国宝建造物",
         "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html",
     },
+    {
+        "slug": "unesco_global_geoparks",
+        "label": "ユネスコ世界ジオパーク一覧",
+        "url": "https://geopark.jp/geopark/",
+    },
 ]
 
 ISSUE_LABEL = "data-source-update"

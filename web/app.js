@@ -7,9 +7,10 @@ const TIERS = {
   "tentative_official": { color: "#7d8da1", label: "公式暫定リスト",  point: 2 },
   "tentative":          { color: "#b9c0c9", label: "暫定リスト候補",  point: 2 },
   "national_treasure":  { color: "#8a4b2e", label: "国宝建造物",      point: 1 },
+  "geopark":            { color: "#c1440e", label: "世界ジオパーク",  point: 1 },
 };
-const TIER_ORDER = ["world", "tentative_official", "tentative", "national_treasure"];
-const CATEGORIES = ["文化遺産", "自然遺産", "混合遺産"];
+const TIER_ORDER = ["world", "tentative_official", "tentative", "national_treasure", "geopark"];
+const CATEGORIES = ["文化遺産", "自然遺産", "混合遺産", "ジオパーク"];
 
 const map = L.map("map").setView([36.2, 138.2], 5);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -223,17 +224,18 @@ const PREF_ORDER = [
 
 function computeRanking() {
   const sc = {};
-  PREF_ORDER.forEach(p => { sc[p] = { pref: p, point: 0, world: 0, tentative: 0, national: 0, count: 0 }; });
+  PREF_ORDER.forEach(p => { sc[p] = { pref: p, point: 0, world: 0, tentative: 0, national: 0, geopark: 0, count: 0 }; });
   ITEMS.forEach(it => {
     if (it.point <= 0) return; // overlap は上位がAlready加点済み → 加算しない
     it.prefectures.forEach(p => {
-      if (!sc[p]) sc[p] = { pref: p, point: 0, world: 0, tentative: 0, national: 0, count: 0 };
+      if (!sc[p]) sc[p] = { pref: p, point: 0, world: 0, tentative: 0, national: 0, geopark: 0, count: 0 };
       const r = sc[p];
       r.point += it.point;
       r.count += 1;
       if (it.tier === "world") r.world += 1;
       else if (it.tier === "tentative" || it.tier === "tentative_official") r.tentative += 1;
       else if (it.tier === "national_treasure") r.national += 1;
+      else if (it.tier === "geopark") r.geopark += 1;
     });
   });
   return Object.values(sc);
@@ -268,6 +270,7 @@ function renderRanking() {
       <td class="n">${r.world ? r.world : '<span class="zero">0</span>'}</td>
       <td class="n">${z(r.tentative)}</td>
       <td class="n">${z(r.national)}</td>
+      <td class="n">${z(r.geopark)}</td>
       <td class="n">${r.count}</td>`;
     tr.addEventListener("click", () => {
       prefEl.value = r.pref;
@@ -287,7 +290,7 @@ function renderRanking() {
   const top = rows[0];
   const total = rows.reduce((a, b) => a + b.point, 0);
   document.getElementById("rankingSummary").innerHTML =
-    `全国合計 <b>${total}</b> pt ／ 1位 <b>${esc(top.pref)}</b>（${top.point} pt／世界遺産${top.world}・暫定${top.tentative}・国宝${top.national}）`;
+    `全国合計 <b>${total}</b> pt ／ 1位 <b>${esc(top.pref)}</b>（${top.point} pt／世界遺産${top.world}・暫定${top.tentative}・国宝${top.national}・ジオパーク${top.geopark}）`;
 }
 
 /* tab switching */

@@ -1,13 +1,14 @@
 # 日本の世界遺産・国宝建造物マップ
 
-国内の **世界遺産**（金）・ **世界遺産暫定リスト**（銀）・ **国宝建造物**（銅）の場所を OpenStreetMap 上にピン表示し、都道府県ごとのポイントランキングを作る Web アプリです。コメリ全店舗マップと同じ技術スタック（Leaflet + OpenStreetMap + markercluster、静的 JSON、vanilla JS、GitHub Pages）を踏襲しています。
+国内の **世界遺産**（金）・ **世界遺産暫定リスト**（銀）・ **国宝建造物**（銅）・ **ユネスコ世界ジオパーク**（テラコッタ）の場所を OpenStreetMap 上にピン表示し、都道府県ごとのポイントランキングを作る Web アプリです。コメリ全店舗マップと同じ技術スタック（Leaflet + OpenStreetMap + markercluster、静的 JSON、vanilla JS、GitHub Pages）を踏襲しています。
 
 ## 機能
 
-- 3種別をピン色で識別：**世界遺産=金**・**暫定リスト=銀**・**国宝建造物=銅**
+- 4種別をピン色で識別：**世界遺産=金**・**暫定リスト=銀**・**国宝建造物=銅**・**世界ジオパーク=テラコッタ**
   - 暫定リストは「公式暫定リスト」と「暫定リスト記載候補」（文化庁審議27件）を色味で区別
   - 「飛鳥・藤原の宮都とその関連資産群」（奈良県）は2026年7月に世界遺産登録されたため世界遺産（金）として扱う
-- **種別フィルタ**（世界遺産 / 公式暫定 / 暫定候補 / 国宝）と **カテゴリフィルタ**（文化遺産 / 自然遺産 / 混合遺産）を組み合わせて表示
+  - ユネスコ世界ジオパークは範囲が広いため、各ジオパーク内の代表的な観光名所1件をそのジオパークの代表スポットとしてピン立て（例: 山陰海岸ジオパーク→鳥取砂丘）
+- **種別フィルタ**（世界遺産 / 公式暫定 / 暫定候補 / 国宝 / ジオパーク）と **カテゴリフィルタ**（文化遺産 / 自然遺産 / 混合遺産 / ジオパーク）を組み合わせて表示
 - 名称・都道府県で検索、都道府県絞り込み
 - サイドバーリスト ⇄ 地図マーカーの連動
 - ポップアップから Google Maps 経路・ストリートビュー・検索へリンク
@@ -20,6 +21,7 @@
 | 世界遺産 | 3 pt |
 | 暫定リスト（公式・候補） | 2 pt |
 | 国宝建造物 | 1 pt |
+| ユネスコ世界ジオパーク | 1 pt |
 
 - 同じ場所が複数種別に該当する場合は **上位のポイントのみ反映**（例: 姫路城は世界遺産3ptのみカウントし、国宝分は加算しない）
 - 複数都道府県にまたがる物件（白神山地=青森・秋田 など）は両方の都道府県にポイントを付与
@@ -60,7 +62,7 @@ python3 -m http.server 8000
 python3 crawl/build_heritage.py    # web/data/heritage.json を生成
 ```
 
-- 世界遺産27件・暫定候補27件は `build_heritage.py` 内に座標付きで埋め込み済み（公式暫定リストは2026年7月時点で0件）。
+- 世界遺産27件・暫定候補27件・世界ジオパーク11件は `build_heritage.py` 内に座標付きで埋め込み済み（公式暫定リストは2026年7月時点で0件）。
 - 国宝建造物は `crawl/national_treasures.json`（facility単位）から読み込み、OpenStreetMap の Nominatim で座標を補完（`crawl/geocode_cache.json` にキャッシュ）。
 
 ## 情報源
@@ -68,12 +70,13 @@ python3 crawl/build_heritage.py    # web/data/heritage.json を生成
 - [文化庁 世界遺産一覧](https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/)
 - [文化庁 世界遺産暫定リスト記載候補（審議結果）](https://www.bunka.go.jp/seisaku/bunkashingikai/bunkazai/sekaitokubetsu/shingi_kekka/besshi_8.html)
 - [文化庁 国宝建造物](https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html)
+- [日本ジオパークネットワーク（ユネスコ世界ジオパーク一覧）](https://geopark.jp/)
 - 座標: OpenStreetMap Nominatim
 - 地図: © OpenStreetMap contributors（[ODbL](https://www.openstreetmap.org/copyright)）
 
 ## 情報源の更新チェック
 
-`.github/workflows/check-source-updates.yml` が3ヶ月ごと（1/4/7/10月の1日）に文化庁の3ページ（世界遺産一覧・暫定リスト記載候補・国宝建造物）の本文をチェックし、前回スナップショットとの差分があれば GitHub Issue（ラベル `data-source-update`）を作成・更新します。
+`.github/workflows/check-source-updates.yml` が3ヶ月ごと（1/4/7/10月の1日）に情報源4ページ（文化庁の世界遺産一覧・暫定リスト記載候補・国宝建造物、および日本ジオパークネットワークのジオパーク一覧）の本文をチェックし、前回スナップショットとの差分があれば GitHub Issue（ラベル `data-source-update`）を作成・更新します。
 
 - データそのものは自動で書き換えません。世界遺産/暫定リストの区分や国宝建造物のfacility分類は文脈判断が必要なため、Issueを見て人（Claude Codeセッション含む）が `crawl/national_treasures.json` や `build_heritage.py` 内のシードを手動で更新し、`python3 crawl/build_heritage.py` を再実行してください。
 - 手動実行: `python3 crawl/check_source_updates.py --dry-run`（Issue作成・コミットはせず結果表示のみ）
@@ -86,3 +89,20 @@ python3 crawl/build_heritage.py    # web/data/heritage.json を生成
 1. リポジトリを GitHub にプッシュ
 2. **Settings → Pages** の **Source** を「GitHub Actions」に設定
 3. `https://<ユーザー名>.github.io/<リポジトリ名>/` で公開
+
+## 変更ログ
+
+### 2026-07-29
+- **ユネスコ世界ジオパークを追加**（11地域）。範囲が広いジオパークは代表的な観光名所1件を代表スポットとしてピン立て（例: 山陰海岸ジオパーク→鳥取砂丘、Mine秋吉台ジオパーク→秋芳洞）。ピン色はテラコッタ（`#c1440e`）、ポイントは国宝と同じ1pt。種別・カテゴリ両フィルタ、ランキング表に反映。
+- `check_source_updates.py` の監視対象に日本ジオパークネットワークのジオパーク一覧ページを追加（4ページ体制に）。
+
+### 2026-07-28
+- 「飛鳥・藤原の宮都とその関連資産群」（奈良県）が2026年7月に世界遺産登録されたため、暫定リストから世界遺産（金）に移動。
+- 金（世界遺産）ピンの色を `#e0a816` → `#ffc400`（鮮やかな山吹色）、銅（国宝建造物）ピンの色を `#b87333` → `#8a4b2e`（赤茶系ブロンズ）に変更し、視認性を改善。
+- 文化庁3ページの変更を3ヶ月ごとに検知し GitHub Issue を作成する `check-source-updates.yml` / `check_source_updates.py` を追加。データの自動書き換えは行わず、人によるレビューを促す設計。
+
+### 2026-07-27（初版）
+- コメリ全店舗マップを元に、世界遺産（金）・世界遺産暫定リスト（銀）・国宝建造物（銅）を表示する地図アプリとして新規構築。
+- 世界遺産26件・暫定リスト記載候補27件（文化庁審議）・国宝建造物144施設（facility単位）を収録。
+- 都道府県ごとのポイントランキング（世界遺産3pt・暫定リスト2pt・国宝建造物1pt、重複時は上位ポイントのみ反映）を追加。
+- 座標は世界遺産・暫定リストは手動シード、国宝建造物は OpenStreetMap Nominatim で取得。

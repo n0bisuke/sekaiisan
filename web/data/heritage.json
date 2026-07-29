@@ -20,6 +20,11 @@
       "point": 1,
       "color": "#8a4b2e",
       "label": "国宝建造物"
+    },
+    "geopark": {
+      "point": 1,
+      "color": "#c1440e",
+      "label": "世界ジオパーク"
     }
   },
   "items": [
@@ -4021,6 +4026,204 @@
       ],
       "wh_site": "琉球王国のグスク及び関連遺産群",
       "overlap": true
+    },
+    {
+      "id": "h198",
+      "name": "昭和新山",
+      "prefectures": [
+        "北海道"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 42.544,
+      "lon": 140.8346,
+      "note": "2015年認定",
+      "sub": "洞爺湖有珠山ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h199",
+      "name": "アポイ岳",
+      "prefectures": [
+        "北海道"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 42.1075,
+      "lon": 143.0847,
+      "note": "2015年認定",
+      "sub": "アポイ岳ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h200",
+      "name": "フォッサマグナパーク",
+      "prefectures": [
+        "新潟県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 36.9576,
+      "lon": 137.8565,
+      "note": "2015年認定",
+      "sub": "糸魚川ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h201",
+      "name": "鳥取砂丘",
+      "prefectures": [
+        "鳥取県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 35.5389,
+      "lon": 134.2258,
+      "note": "2015年認定（ジオパーク自体は京都府・兵庫県・鳥取県にまたがる）",
+      "sub": "山陰海岸ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h202",
+      "name": "室戸岬",
+      "prefectures": [
+        "高知県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 33.2508,
+      "lon": 134.1757,
+      "note": "2015年認定",
+      "sub": "室戸ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h203",
+      "name": "摩天崖",
+      "prefectures": [
+        "島根県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 36.2986,
+      "lon": 133.0669,
+      "note": "2015年認定",
+      "sub": "隠岐ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h204",
+      "name": "阿蘇中岳火口",
+      "prefectures": [
+        "熊本県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 32.8847,
+      "lon": 131.1043,
+      "note": "2015年認定",
+      "sub": "阿蘇ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h205",
+      "name": "平成新山（雲仙普賢岳）",
+      "prefectures": [
+        "長崎県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 32.7614,
+      "lon": 130.2989,
+      "note": "2015年認定",
+      "sub": "島原半島ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h206",
+      "name": "城ヶ崎海岸",
+      "prefectures": [
+        "静岡県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 34.8958,
+      "lon": 139.1319,
+      "note": "2018年認定",
+      "sub": "伊豆半島ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h207",
+      "name": "手取峡谷",
+      "prefectures": [
+        "石川県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 36.3006,
+      "lon": 136.6494,
+      "note": "2023年認定",
+      "sub": "白山手取川ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
+    },
+    {
+      "id": "h208",
+      "name": "秋芳洞",
+      "prefectures": [
+        "山口県"
+      ],
+      "category": "ジオパーク",
+      "tier": "geopark",
+      "point": 1,
+      "lat": 34.2334,
+      "lon": 131.3036,
+      "note": "2026年認定",
+      "sub": "Mine秋吉台ユネスコ世界ジオパーク",
+      "year": null,
+      "buildings": [],
+      "wh_site": "",
+      "overlap": false
     }
   ]
 }

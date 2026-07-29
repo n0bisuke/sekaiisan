@@ -30,7 +30,7 @@
     </div>
     <ul id="list"></ul>
     <footer id="src">
-      データ: <a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/" target="_blank" rel="noopener">文化庁 世界遺産一覧</a>・<a href="https://www.bunka.go.jp/seisaku/bunkashingikai/bunkazai/sekaitokubetsu/shingi_kekka/besshi_8.html" target="_blank" rel="noopener">暫定リスト候補</a>・<a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html" target="_blank" rel="noopener">国宝建造物</a>／地図: ©OpenStreetMap contributors
+      データ: <a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/sekai_isan/ichiran/" target="_blank" rel="noopener">文化庁 世界遺産一覧</a>・<a href="https://www.bunka.go.jp/seisaku/bunkashingikai/bunkazai/sekaitokubetsu/shingi_kekka/besshi_8.html" target="_blank" rel="noopener">暫定リスト候補</a>・<a href="https://www.bunka.go.jp/seisaku/bunkazai/shokai/yukei_kenzobutsu/kokuho_bunkazai.html" target="_blank" rel="noopener">国宝建造物</a>・<a href="https://geopark.jp/" target="_blank" rel="noopener">日本ジオパークネットワーク</a>／地図: ©OpenStreetMap contributors
     </footer>
   </aside>
   <main id="map"></main>
@@ -40,9 +40,9 @@
 <section id="rankingView" class="hidden">
   <div class="ranking-inner">
     <header class="ranking-head">
-      <h2>都道府県ポイントランキング — 世界遺産・暫定リスト・国宝の“お宝”密度</h2>
+      <h2>都道府県ポイントランキング — 世界遺産・暫定リスト・国宝・ジオパークの“お宝”密度</h2>
       <p class="ranking-note">
-        世界遺産<strong>3pt</strong>・暫定リスト（公式・候補）<strong>2pt</strong>・国宝建造物<strong>1pt</strong>を都道府県ごとに集計。
+        世界遺産<strong>3pt</strong>・暫定リスト（公式・候補）<strong>2pt</strong>・国宝建造物<strong>1pt</strong>・世界ジオパーク<strong>1pt</strong>を都道府県ごとに集計。
         同じ場所が複数該当する場合は<strong>上位のポイントのみ反映</strong>（例: 姫路城は世界遺産3ptのみカウントし、国宝分は加算しない）。
         複数都道府県にまたがる物件は両方の都道府県にポイントを付与します。
       </p>
@@ -58,7 +58,7 @@
       <table id="rankingTable">
         <thead><tr>
           <th class="r">順位</th><th class="pt">ポイント</th><th class="pref">都道府県</th>
-          <th class="n">世界遺産</th><th class="n">暫定</th><th class="n">国宝</th><th class="n">物件計</th>
+          <th class="n">世界遺産</th><th class="n">暫定</th><th class="n">国宝</th><th class="n">ジオパーク</th><th class="n">物件計</th>
         </tr></thead>
         <tbody></tbody>
       </table>
